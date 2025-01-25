@@ -78,7 +78,7 @@ const Navbar = () => {
                 {/* Navbar End: Authentication Section */}
                 <div className="navbar-end">
                     {!isLoggedIn ? (
-                        <Link to="/login" className="btn btn-primary">
+                        <Link to="/auth/login" className="btn btn-primary">
                             Login / Register
                         </Link>
                     ) : (
