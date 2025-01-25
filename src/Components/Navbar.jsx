@@ -5,7 +5,7 @@ const Navbar = () => {
     const userName = "John Doe";
 
     return (
-        <div className="container mx-auto mx-1">
+        <div className="container mx-auto mx-2">
             <div className="navbar bg-base-100">
                 {/* Navbar Start: Logo and Hamburger */}
                 <div className="navbar-start">
@@ -50,7 +50,7 @@ const Navbar = () => {
                     </div>
                     {/* Logo */}
                     <Link to="/" className="text-xl font-bold text-primary">
-                        ProductHunt
+                    Tech Discovery
                     </Link>
                 </div>
 
