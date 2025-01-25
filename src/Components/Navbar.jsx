@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Navbar = () => {
-    const isLoggedIn = false;
+    const { user, logout } = useContext(AuthContext);
+    console.log(user)
     const userName = "John Doe";
 
     return (
@@ -50,7 +53,7 @@ const Navbar = () => {
                     </div>
                     {/* Logo */}
                     <Link to="/" className="text-xl font-bold text-primary">
-                    Tech Discovery
+                        Tech Discovery
                     </Link>
                 </div>
 
@@ -77,31 +80,36 @@ const Navbar = () => {
 
                 {/* Navbar End: Authentication Section */}
                 <div className="navbar-end">
-                    {!isLoggedIn ? (
+                    {!user ? (
                         <Link to="/auth/login" className="btn btn-primary">
                             Login / Register
                         </Link>
                     ) : (
                         <div className="dropdown dropdown-end">
                             <label tabIndex={0} className="btn btn-ghost btn-circle">
-                                <div className="w-10 rounded-full bg-gray-300 text-center">
-                                    <span className="text-sm font-bold">{userName[0]}</span>
-                                </div>
+                                <img
+                                    className="w-7 sm:w-9 rounded-full cursor-pointer border-4 border-primary"
+                                    src={user?.photoURL}
+                                    alt="Avatar"
+                                />
                             </label>
                             <ul
                                 tabIndex={0}
                                 className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
                             >
                                 <li>
-                                    <span className="font-bold">{userName}</span>
+                                    <span className="font-bold">{user.displayName}</span>
                                 </li>
                                 <li>
                                     <Link to="/dashboard">Dashboard</Link>
                                 </li>
                                 <li>
-                                    <button className="btn btn-ghost" onClick={() => console.log("Logout clicked")}>
+                                    <Link
+                                        className="btn btn-ghost"
+                                        onClick={logout}
+                                        to="/">
                                         Logout
-                                    </button>
+                                    </Link>
                                 </li>
                             </ul>
                         </div>
