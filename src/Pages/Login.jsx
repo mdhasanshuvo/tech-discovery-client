@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../provider/AuthProvider';
 import { useContext } from "react";
+import axios from "axios";
 
 const Login = () => {
     const { signIn, setUser, googleAuth, email, setEmail } = useContext(AuthContext);
@@ -18,19 +19,38 @@ const Login = () => {
                 console.log(userFromGoogle);
                 setUser(userFromGoogle);
 
-                // Show success message with SweetAlert
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Login Successful',
-                    text: 'You have successfully logged in with Google!',
-                });
+                // Prepare user information for the database
+                const userInfo = {
+                    name: userFromGoogle.displayName,
+                    email: userFromGoogle.email,
+                    photo: userFromGoogle.photoURL,
+                };
 
-                navigate(location?.state ? location.state : '/');
+                // Add user to the database
+                axios.post('http://localhost:5000/users', userInfo)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            console.log('User added to the database');
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Login Successful',
+                                text: 'You have successfully logged in with Google!',
+                            });
+
+                            navigate(location?.state ? location.state : '/');
+                        }
+                    })
+                    .catch(error => {
+                        console.log('Error adding user to database:', error);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Database Error',
+                            text: 'Failed to save user information. Please try again later.',
+                        });
+                    });
             })
             .catch(error => {
-                console.log(error.message);
-
-                // Show error message with SweetAlert
+                console.log('Error during Google authentication:', error.message);
                 Swal.fire({
                     icon: 'error',
                     title: 'Login Failed',
@@ -38,6 +58,7 @@ const Login = () => {
                 });
             });
     };
+
 
     const handleSubmit = (e) => {
         e.preventDefault();

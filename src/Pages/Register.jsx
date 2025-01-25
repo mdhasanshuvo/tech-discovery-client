@@ -1,8 +1,9 @@
-import  { useContext } from 'react';
+import { useContext } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from '../provider/AuthProvider';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 const Register = () => {
     const { signUp, setUser, updateUser, googleAuth } = useContext(AuthContext);
@@ -22,20 +23,40 @@ const Register = () => {
                 const userFromGoogle = result.user;
                 console.log(userFromGoogle);
                 setUser(userFromGoogle);
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Registered Successfully!',
-                    text: 'Welcome to Haven Hotel and Suites!',
-                    confirmButtonText: 'Continue',
-                }).then(() => {
-                    navigate(location?.state ? location.state : '/');
-                });
+
+                // Prepare user information for the database
+                const userInfo = {
+                    name: userFromGoogle.displayName,
+                    email: userFromGoogle.email,
+                    photo: userFromGoogle.photoURL,
+                };
+
+                // Add user to the database
+                axios.post('http://localhost:5000/users', userInfo)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            console.log('User added to the database');
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Registered Successfully!',
+                                text: 'Welcome to Tech Discovery!',
+                                confirmButtonText: 'Continue',
+                            }).then(() => {
+                                navigate(location?.state ? location.state : '/');
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.log('Error adding user to database:', error);
+                        showErrorAlert(error.message);
+                    });
             })
             .catch(error => {
-                console.log(error.message);
+                console.log('Error during Google authentication:', error.message);
                 showErrorAlert(error.message);
             });
     };
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -61,29 +82,47 @@ const Register = () => {
                 console.log(user);
                 setUser(user);
 
+                // Update user profile
                 updateUser({
                     displayName: name,
                     photoURL: photo,
                 })
                     .then(() => {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Registered Successfully!',
-                            text: 'Your account has been created.',
-                            confirmButtonText: 'Continue',
-                        }).then(() => {
-                            navigate('/');
-                        });
+                        const userInfo = {
+                            name: user.displayName,
+                            email: user.email,
+                            photo: user.photoURL,
+                        };
+
+                        axios.post('http://localhost:5000/users', userInfo)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    console.log('User added to the database');
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Registered Successfully!',
+                                        text: 'Your account has been created.',
+                                        confirmButtonText: 'Continue',
+                                    }).then(() => {
+                                        navigate('/');
+                                    });
+                                }
+                            })
+                            .catch(error => {
+                                console.log('Error adding user to database:', error);
+                                showErrorAlert(error.message);
+                            });
                     })
                     .catch(error => {
-                        console.log(error);
+                        console.log('Error updating user profile:', error);
                         showErrorAlert(error.message);
                     });
             })
             .catch(error => {
-                console.log(error.message);
+                console.log('Error during sign-up:', error.message);
                 showErrorAlert(error.message);
             });
+
     };
 
     return (
