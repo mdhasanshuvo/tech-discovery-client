@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 const ManageUsers = () => {
+    const axiosSecure = useAxiosSecure();
     const [users, setUsers] = useState([]);
 
-    // Fetch all users
+    // Fetch all users securely
     useEffect(() => {
-        axios
-            .get("http://localhost:5000/users")
+        axiosSecure
+            .get("/users")
             .then((res) => setUsers(res.data))
             .catch((err) => console.error(err));
-    }, []);
+    }, [axiosSecure]);
 
     // Promote user to Admin
     const handleMakeAdmin = (id) => {
@@ -25,8 +26,8 @@ const ManageUsers = () => {
             confirmButtonText: "Yes, promote!",
         }).then((result) => {
             if (result.isConfirmed) {
-                axios
-                    .patch(`http://localhost:5000/users/${id}/role`, { role: "admin" })
+                axiosSecure
+                    .patch(`/users/${id}/role`, { role: "admin" })
                     .then(() => {
                         setUsers((prev) =>
                             prev.map((user) =>
@@ -55,8 +56,8 @@ const ManageUsers = () => {
             confirmButtonText: "Yes, promote!",
         }).then((result) => {
             if (result.isConfirmed) {
-                axios
-                    .patch(`http://localhost:5000/users/${id}/role`, { role: "moderator" })
+                axiosSecure
+                    .patch(`/users/${id}/role`, { role: "moderator" })
                     .then(() => {
                         setUsers((prev) =>
                             prev.map((user) =>
