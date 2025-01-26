@@ -12,6 +12,7 @@ import MyProfile from '../Components/MyProfile';
 import AddProduct from '../Components/AddProduct';
 import MyProducts from '../Components/MyProducts';
 import ReviewQueue from '../Components/ReviewQueue';
+import Products from '../Pages/Products';
 
 const router = createBrowserRouter([
     {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
             {
                 path: '/auth/register',
                 element: <Register></Register>
+            },
+            {
+                path: '/products',
+                element: <Products></Products>
             },
         ]
     },
