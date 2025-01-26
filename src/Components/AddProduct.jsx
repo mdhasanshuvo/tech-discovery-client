@@ -3,9 +3,11 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../provider/AuthProvider';
 import { WithContext as ReactTags } from 'react-tag-input';
+import { useNavigate } from 'react-router-dom';
 
 const AddProduct = () => {
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
     const [productData, setProductData] = useState({
         name: '',
         image: '',
@@ -36,6 +38,7 @@ const AddProduct = () => {
             if (response.status === 201) {
                 Swal.fire('Success!', 'Product added successfully!', 'success');
                 setProductData({ name: '', image: '', description: '', tags: [], externalLink: '' });
+                navigate('/dashboard/my-products')
             }
         } catch (error) {
             Swal.fire('Error!', 'Failed to add product. Please try again.', 'error');
