@@ -6,6 +6,8 @@ import Register from '../Pages/Register';
 import ErrorPage from '../Pages/ErrorPage';
 import DashboardLayout from '../Layout/DashboardLayout';
 import ManageUsers from '../Components/ManageUsers';
+import PrivateRoute from './PrivateRoute';
+import AdminRoute from './AdminRoute';
 
 const router = createBrowserRouter([
     {
@@ -27,12 +29,12 @@ const router = createBrowserRouter([
         ]
     },
     {
-        path:'/dashboard',
-        element: <DashboardLayout></DashboardLayout>,
-        children:[
+        path: '/dashboard',
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        children: [
             {
                 path: "manage-users",
-                element: <ManageUsers></ManageUsers>
+                element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
             },
         ]
     },

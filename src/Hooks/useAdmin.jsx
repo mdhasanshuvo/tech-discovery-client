@@ -28,7 +28,7 @@ const useAdmin = () => {
         };
 
         fetchAdminStatus();
-    }, [user?.email, axiosSecure]);
+    }, [user?.email]);
 
     return [isAdmin, isAdminLoading];
 };
