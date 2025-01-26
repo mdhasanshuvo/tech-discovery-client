@@ -9,6 +9,8 @@ import ManageUsers from '../Components/ManageUsers';
 import PrivateRoute from './PrivateRoute';
 import AdminRoute from './AdminRoute';
 import MyProfile from '../Components/MyProfile';
+import AddProduct from '../Components/AddProduct';
+import MyProducts from '../Components/MyProducts';
 
 const router = createBrowserRouter([
     {
@@ -40,6 +42,14 @@ const router = createBrowserRouter([
             {
                 path: "my-profile",
                 element: <MyProfile></MyProfile>
+            },
+            {
+                path:"add-product",
+                element: <AddProduct></AddProduct>
+            },
+            {
+                path:"my-products",
+                element: <MyProducts></MyProducts>
             }
         ]
     },
