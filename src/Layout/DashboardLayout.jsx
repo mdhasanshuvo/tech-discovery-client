@@ -1,21 +1,25 @@
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { FiLogOut, FiUser, FiHome, FiSettings } from "react-icons/fi";
 import { MdDashboard } from "react-icons/md";
-// import { useAdmin } from "../hooks/useAdmin"; // Hook to check Admin role
+import useAdmin from "../Hooks/useAdmin";
 // import { useModerator } from "../hooks/useModerator"; // Hook to check Moderator role
 
 const DashboardLayout = () => {
+    const navigate = useNavigate();
     const { user, logout } = useContext(AuthContext);
-    //   const [isAdmin] = useAdmin();
-    const isAdmin = true;
+      const [isAdmin] = useAdmin();
+    // const isAdmin = true;
     //   const [isModerator] = useModerator();
     const isModerator = false;
 
     const handleLogout = () => {
         logout()
-            .then(() => console.log("Logged out successfully"))
+            .then(() => {
+                navigate('/');
+                console.log("Logged out successfully")
+            })
             .catch((err) => console.error(err));
     };
 
@@ -111,7 +115,7 @@ const DashboardLayout = () => {
                         className="w-full flex items-center justify-center space-x-2 px-4 py-2 text-white bg-red-600 hover:bg-red-700 rounded-lg"
                     >
                         <FiLogOut size={20} />
-                        <span>Logout</span>
+                        <Link to="/">Logout</Link>
                     </button>
                 </div>
             </aside>
