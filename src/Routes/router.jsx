@@ -11,6 +11,7 @@ import AdminRoute from './AdminRoute';
 import MyProfile from '../Components/MyProfile';
 import AddProduct from '../Components/AddProduct';
 import MyProducts from '../Components/MyProducts';
+import ReviewQueue from '../Components/ReviewQueue';
 
 const router = createBrowserRouter([
     {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
             {
                 path:"my-products",
                 element: <MyProducts></MyProducts>
+            },
+            {
+                path:"review-queue",
+                element: <ReviewQueue></ReviewQueue>
             }
         ]
     },
