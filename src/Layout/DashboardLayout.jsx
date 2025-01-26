@@ -4,15 +4,14 @@ import { AuthContext } from "../provider/AuthProvider";
 import { FiLogOut, FiUser, FiHome, FiSettings } from "react-icons/fi";
 import { MdDashboard } from "react-icons/md";
 import useAdmin from "../Hooks/useAdmin";
+import useModerator from "../Hooks/useModerator";
 // import { useModerator } from "../hooks/useModerator"; // Hook to check Moderator role
 
 const DashboardLayout = () => {
     const navigate = useNavigate();
     const { user, logout } = useContext(AuthContext);
       const [isAdmin] = useAdmin();
-    // const isAdmin = true;
-    //   const [isModerator] = useModerator();
-    const isModerator = false;
+      const [isModerator] = useModerator();
 
     const handleLogout = () => {
         logout()
