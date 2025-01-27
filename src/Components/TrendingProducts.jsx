@@ -146,7 +146,6 @@ const TrendingProducts = () => {
                                         ? 'bg-gray-300 text-gray-600 cursor-not-allowed'
                                         : 'bg-blue-600 text-white hover:bg-blue-700'
                                         }`}
-                                    disabled={product.owner.email === user?.email}
                                 >
                                     {product.voters?.includes(user?.email) ? (
                                         <FiCheckCircle className="text-lg" />

@@ -19,7 +19,7 @@ const ReviewQueue = () => {
         };
 
         fetchProducts();
-    }, []);
+    }, [products]);
 
     const updateProductStatus = async (id, status) => {
         try {
