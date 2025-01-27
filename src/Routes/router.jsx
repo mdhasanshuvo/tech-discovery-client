@@ -17,6 +17,7 @@ import ProductDetails from '../Pages/ProductDetails';
 import ReportedContents from '../Components/ReportedContents';
 import ModeratorRoute from './ModeratorRoute';
 import Payment from '../Components/Payment';
+import AdminStatistics from '../Components/AdminStatistics';
 
 const router = createBrowserRouter([
     {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
             {
                 path: "manage-users",
                 element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
+            },
+            {
+                path: "statistics",
+                element: <AdminStatistics></AdminStatistics>,
             },
             {
                 path: "my-profile",
