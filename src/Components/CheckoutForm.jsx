@@ -2,6 +2,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutForm = () => {
     const stripe = useStripe();
@@ -10,6 +11,7 @@ const CheckoutForm = () => {
     const [clientSecret, setClientSecret] = useState('')
     const [transactionId, setTransactionId] = useState('');
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate()
 
     const totalPrice = 100;
 
@@ -69,6 +71,13 @@ const CheckoutForm = () => {
             if (paymentIntent.status === 'succeeded') {
                 console.log('transaction id', paymentIntent.id);
                 setTransactionId(paymentIntent.id);
+
+                axios.patch(
+                    `http://localhost:5000/user/subscribe`,
+                    { email: user.email, subscribed: true },
+                    { withCredentials: true }
+                );
+                navigate("/dashboard/my-profile")
             }
         }
 
