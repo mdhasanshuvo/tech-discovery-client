@@ -13,6 +13,7 @@ import AddProduct from '../Components/AddProduct';
 import MyProducts from '../Components/MyProducts';
 import ReviewQueue from '../Components/ReviewQueue';
 import Products from '../Pages/Products';
+import ProductDetails from '../Pages/ProductDetails';
 
 const router = createBrowserRouter([
     {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
                 path: '/products',
                 element: <Products></Products>
             },
+            {
+                path: '/product-details/:id',
+                element: <PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>
+            }
         ]
     },
     {
@@ -50,15 +55,15 @@ const router = createBrowserRouter([
                 element: <MyProfile></MyProfile>
             },
             {
-                path:"add-product",
+                path: "add-product",
                 element: <AddProduct></AddProduct>
             },
             {
-                path:"my-products",
+                path: "my-products",
                 element: <MyProducts></MyProducts>
             },
             {
-                path:"review-queue",
+                path: "review-queue",
                 element: <ReviewQueue></ReviewQueue>
             }
         ]
