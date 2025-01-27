@@ -5,14 +5,13 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const MyProfile = () => {
-    const { user } = useContext(AuthContext); // Current user from Firebase
-    const [subscribed, setSubscribed] = useState(false); // Subscription status
-    const [subscriptionAmount, setSubscriptionAmount] = useState(100); // Subscription amount (placeholder)
-    const [couponCode, setCouponCode] = useState(""); // Input coupon code
-    const [appliedCoupon, setAppliedCoupon] = useState(null); // Applied coupon details
-    const [couponApplied, setCouponApplied] = useState(false); // Track if coupon has been applied
+    const { user, subscriptionAmount, updateSubscriptionAmount } = useContext(AuthContext);
+    const [subscribed, setSubscribed] = useState(false);
+    const [couponCode, setCouponCode] = useState("");
+    const [appliedCoupon, setAppliedCoupon] = useState(null);
+    const [couponApplied, setCouponApplied] = useState(false);
 
-    // Fetch subscription status on component load
+    // Fetch subscription status
     useEffect(() => {
         const checkSubscription = async () => {
             try {
@@ -56,18 +55,15 @@ const MyProfile = () => {
                 withCredentials: true,
             });
 
-            // Ensure the response is successful before proceeding
             if (response.data.success) {
                 const coupon = response.data;
                 const discountAmount = (subscriptionAmount * coupon.discount) / 100;
                 const discountedPrice = subscriptionAmount - discountAmount;
 
-                setSubscriptionAmount(discountedPrice);
+                updateSubscriptionAmount(discountedPrice); // Update the subscription amount in context
                 setAppliedCoupon(coupon);
-                setCouponApplied(true); // Mark as applied
-
-                // Clear the coupon input after applying
-                setCouponCode("");
+                setCouponApplied(true);
+                setCouponCode(""); // Clear input
 
                 Swal.fire({
                     icon: "success",
@@ -75,7 +71,6 @@ const MyProfile = () => {
                     text: `You have received a ${coupon.discount}% discount!`,
                 });
             } else {
-                // Handle invalid coupon
                 Swal.fire({
                     icon: "error",
                     title: "Invalid Coupon",
@@ -120,10 +115,12 @@ const MyProfile = () => {
                                         onChange={(e) => setCouponCode(e.target.value)}
                                         placeholder="Enter your coupon code"
                                         className="flex-grow px-4 py-2 border rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        disabled={couponApplied}
                                     />
                                     <button
                                         onClick={handleApplyCoupon}
                                         className="px-4 py-2 bg-blue-500 text-white font-medium rounded-r-md hover:bg-blue-600 transition duration-300"
+                                        disabled={couponApplied}
                                     >
                                         Apply
                                     </button>

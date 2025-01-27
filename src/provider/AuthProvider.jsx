@@ -69,7 +69,14 @@ const AuthProvider = ({ children }) => {
         return () => {
             return unsubscribe();
         }
-    }, [])
+    }, []);
+
+
+    const [subscriptionAmount, setSubscriptionAmount] = useState(100); // Default amount
+
+    const updateSubscriptionAmount = (amount) => {
+        setSubscriptionAmount(amount);
+    };
 
 
 
@@ -84,6 +91,8 @@ const AuthProvider = ({ children }) => {
         updateUser,
         email,
         setEmail,
+        subscriptionAmount,
+        updateSubscriptionAmount
     }
 
     return (
