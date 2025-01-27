@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -10,7 +10,7 @@ import { FaStar, FaRegStar } from "react-icons/fa"; // Star icons for the rating
 const ProductDetails = () => {
     const { id } = useParams();
     const { user } = useContext(AuthContext);
-    const [product, setProduct] = useState([]);
+    const [product, setProduct] = useState(null);
     const [newReview, setNewReview] = useState({ reviewDescription: "", rating: 0 });
 
     useEffect(() => {
@@ -18,13 +18,14 @@ const ProductDetails = () => {
             try {
                 const response = await axios.get(`http://localhost:5000/products/${id}`);
                 setProduct(response.data.product);
+                console.log(response.data.product);
             } catch (error) {
                 console.error("Error fetching product:", error);
             }
         };
 
         fetchProduct();
-    }, [id,product]);
+    }, [id]);
 
     const handleUpvote = async () => {
         if (!user) {
@@ -51,7 +52,6 @@ const ProductDetails = () => {
             const response = await axios.patch(endpoint, { userEmail: user.email });
 
             if (response.data) {
-                // Re-fetch updated data if necessary
                 setProduct(prevState => ({ ...prevState, ...response.data }));
             }
 
@@ -78,7 +78,6 @@ const ProductDetails = () => {
             });
 
             if (reason.isConfirmed && reason.value) {
-                // Optimistically update the state
                 const updatedReports = [
                     ...(product.reports || []),
                     { userEmail: user.email, reason: reason.value },
@@ -91,7 +90,6 @@ const ProductDetails = () => {
                 });
 
                 if (response.data) {
-                    // Update the state with backend response
                     setProduct(prevState => ({ ...prevState, ...response.data }));
                     Swal.fire("Reported", "Product has been reported!", "success");
                 }
@@ -101,8 +99,6 @@ const ProductDetails = () => {
             Swal.fire("Error", "Something went wrong while reporting.", "error");
         }
     };
-
-
 
     const handleReviewSubmit = async (e) => {
         e.preventDefault();
@@ -121,7 +117,7 @@ const ProductDetails = () => {
 
             if (response.data) {
                 setProduct(prevState => ({ ...prevState, ...response.data }));
-                setNewReview({ reviewDescription: "", rating: 0 }); // Reset the review form
+                setNewReview({ reviewDescription: "", rating: 0 });
             }
             Swal.fire("Success", "Review added successfully!", "success");
         } catch (error) {
@@ -129,7 +125,6 @@ const ProductDetails = () => {
             Swal.fire("Error", "Something went wrong while submitting the review.", "error");
         }
     };
-
 
     if (!product) return <div>Loading...</div>;
 
@@ -139,8 +134,9 @@ const ProductDetails = () => {
                 <img src={product.image} alt={product.name} className="w-full md:w-1/3 rounded shadow-lg" />
                 <div>
                     <h1 className="text-3xl font-bold text-gray-800">{product.name}</h1>
-                    <p className="mt-4 text-lg">{product.reviewDescription}</p>
-                    <p className="mt-2 text-gray-500">Tags: {product.tags?.map(tag => tag.text).join(', ')}</p>
+                    <p className="mt-4 text-lg">{product.description}</p>
+                    <p className="my-2 text-gray-500">Tags: {product.tags.map(tag => tag.text).join(', ')}</p>
+                    <Link target="_blank" className="my-1 text-blue-400 py-1 underline" to={`${product?.externalLink}`}>Go to visit</Link>
 
                     <div className="mt-4 flex items-center gap-6">
                         <button
@@ -195,6 +191,16 @@ const ProductDetails = () => {
             <div className="mt-10">
                 <h2 className="text-2xl font-bold">Post a Review</h2>
                 <form onSubmit={handleReviewSubmit} className="grid gap-6 mt-4">
+                    <div className="flex flex-col gap-4">
+                        <div className="flex items-center gap-4">
+                            <img
+                                src={user?.photoURL || "/default-avatar.png"}
+                                alt={user?.displayName || "Reviewer"}
+                                className="w-10 h-10 rounded-full"
+                            />
+                            <p className="font-semibold">{user?.displayName}</p>
+                        </div>
+                    </div>
                     <textarea
                         value={newReview.reviewDescription}
                         onChange={(e) => setNewReview({ ...newReview, reviewDescription: e.target.value })}

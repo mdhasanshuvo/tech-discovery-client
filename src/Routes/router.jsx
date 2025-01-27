@@ -16,6 +16,7 @@ import Products from '../Pages/Products';
 import ProductDetails from '../Pages/ProductDetails';
 import ReportedContents from '../Components/ReportedContents';
 import ModeratorRoute from './ModeratorRoute';
+import Payment from '../Components/Payment';
 
 const router = createBrowserRouter([
     {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
             {
                 path: "my-profile",
                 element: <MyProfile></MyProfile>
+            },
+            {
+                path: "payment",
+                element: <Payment></Payment>
             },
             {
                 path: "add-product",
