@@ -13,7 +13,7 @@ const CheckoutForm = () => {
     const { user } = useContext(AuthContext);
     const navigate = useNavigate()
 
-    const totalPrice = 100;
+    const totalPrice = 100; //there will te subscriptionAmount
 
     useEffect(() => {
         axios.post('http://localhost:5000/create-payment-intent', { price: totalPrice })
