@@ -16,7 +16,7 @@ const TrendingProducts = () => {
             try {
                 const response = await axios.get("http://localhost:5000/tproducts/trending");
                 setProducts(response.data);
-                console.log(response.data);
+                // console.log(response.data);
             } catch (error) {
                 console.error("Error fetching trending products:", error);
             }
@@ -107,58 +107,63 @@ const TrendingProducts = () => {
     };
 
     return (
-        <div className="container mx-auto mx-2 my-8">
-            <h2 className="text-2xl font-bold text-center mb-6">Trending Products</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
+        <div className="container mx-auto px-4 my-8">
+            <h2 className="text-3xl font-extrabold text-center mb-8 text-gray-800">
+                Trending Products
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {products.map((product) => (
                     <div
                         key={product._id}
-                        className="card shadow-lg p-4 rounded-lg border border-gray-200"
+                        className="card bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
                     >
                         <img
                             src={product.image}
                             alt={product.name}
-                            className="w-full h-48 object-cover rounded-lg mb-4"
+                            className="w-full h-56 object-cover transition-transform duration-300 hover:scale-105"
                         />
-                        <h2
-                            onClick={() => navigate(`/product-details/${product._id}`)}
-                            className="text-xl font-semibold cursor-pointer hover:underline"
-                        >
-                            {product.name}
-                        </h2>
-                        <div className="flex gap-2 my-2">
-                            {product.tags.map((tag, index) => (
-                                <span
-                                    key={index}
-                                    className="px-2 py-1 text-sm bg-gray-100 border rounded-full"
-                                >
-                                    {tag.text}
-                                </span>
-                            ))}
-                        </div>
-                        <div className="flex justify-between items-center mt-4">
-                            <button
-                                onClick={() => handleVoteToggle(product._id)}
-                                className={`flex items-center justify-center gap-2 px-4 py-2 rounded ${product.owner.email === user?.email
-                                    ? 'bg-gray-400'
-                                    : 'bg-blue-500 text-white hover:bg-blue-600'
-                                    }`}
+                        <div className="p-4">
+                            <h2
+                                onClick={() => navigate(`/product-details/${product._id}`)}
+                                className="text-lg font-semibold text-gray-700 cursor-pointer hover:text-blue-500 transition-colors duration-300"
                             >
-                                {product.voters?.includes(user?.email) ? (
-                                    <FiCheckCircle />
-                                ) : (
-                                    <FiThumbsUp />
-                                )}
-                                {product.votes || 0}
-                            </button>
+                                {product.name}
+                            </h2>
+                            <div className="flex gap-2 my-3 flex-wrap">
+                                {product.tags.map((tag, index) => (
+                                    <span
+                                        key={index}
+                                        className="px-3 py-1 text-sm bg-blue-100 text-blue-800 rounded-full"
+                                    >
+                                        {tag.text}
+                                    </span>
+                                ))}
+                            </div>
+                            <div className="flex justify-between items-center mt-4">
+                                <button
+                                    onClick={() => handleVoteToggle(product._id)}
+                                    className={`flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-medium transition-transform transform hover:scale-105 ${product.owner.email === user?.email
+                                        ? 'bg-gray-300 text-gray-600 cursor-not-allowed'
+                                        : 'bg-blue-600 text-white hover:bg-blue-700'
+                                        }`}
+                                    disabled={product.owner.email === user?.email}
+                                >
+                                    {product.voters?.includes(user?.email) ? (
+                                        <FiCheckCircle className="text-lg" />
+                                    ) : (
+                                        <FiThumbsUp className="text-lg" />
+                                    )}
+                                    {product.votes || 0}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 ))}
             </div>
-            <div className="text-center mt-8">
+            <div className="text-center mt-10">
                 <button
                     onClick={() => navigate("/products")}
-                    className="px-6 py-2 bg-green-500 text-white rounded"
+                    className="px-6 py-3 bg-green-600 text-white text-lg rounded-lg shadow-lg hover:bg-green-700 transition-transform transform hover:scale-105"
                 >
                     Show All Products
                 </button>

@@ -10,7 +10,7 @@ const ReviewQueue = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/products/review-queue');
+                const response = await axios.get('http://localhost:5000/queue-products/review-queue');
                 setProducts(response.data);
             } catch (error) {
                 console.error('Error fetching review queue:', error);
