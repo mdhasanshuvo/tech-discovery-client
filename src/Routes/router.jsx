@@ -14,6 +14,7 @@ import MyProducts from '../Components/MyProducts';
 import ReviewQueue from '../Components/ReviewQueue';
 import Products from '../Pages/Products';
 import ProductDetails from '../Pages/ProductDetails';
+import ReportedContents from '../Components/ReportedContents';
 
 const router = createBrowserRouter([
     {
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
             {
                 path: "review-queue",
                 element: <ReviewQueue></ReviewQueue>
+            },
+            {
+                path: "reported-contents",
+                element: <ReportedContents></ReportedContents>
             }
         ]
     },
