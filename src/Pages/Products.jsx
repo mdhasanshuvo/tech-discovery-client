@@ -92,7 +92,7 @@ const Products = () => {
                         product._id === id
                             ? {
                                 ...product,
-                                votes: product.votes + 1,
+                                votes: product?.votes + 1,
                                 voters: [...product.voters, user?.email],
                             }
                             : product
@@ -151,7 +151,7 @@ const Products = () => {
                                 : 'bg-blue-500 text-white hover:bg-blue-600'
                                 }`}
                         >
-                            {product.voters?.includes(user?.email) ? (
+                            {product?.voters?.includes(user?.email) ? (
                                 <FiCheckCircle />
                             ) : (
                                 <FiThumbsUp />
