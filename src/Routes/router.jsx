@@ -19,6 +19,7 @@ import ModeratorRoute from './ModeratorRoute';
 import Payment from '../Components/Payment';
 import AdminStatistics from '../Components/AdminStatistics';
 import ManageCoupon from '../Components/ManageCoupon';
+import About from '../Pages/About';
 
 const router = createBrowserRouter([
     {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
             {
                 path: '/products',
                 element: <Products></Products>
+            },
+            {
+                path: '/about',
+                element: <About></About>
             },
             {
                 path: '/product-details/:id',
