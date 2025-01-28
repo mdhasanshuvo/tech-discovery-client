@@ -20,6 +20,7 @@ import Payment from '../Components/Payment';
 import AdminStatistics from '../Components/AdminStatistics';
 import ManageCoupon from '../Components/ManageCoupon';
 import About from '../Pages/About';
+import ContactUs from '../Pages/ContactUs';
 
 const router = createBrowserRouter([
     {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
             {
                 path: '/about',
                 element: <About></About>
+            },
+            {
+                path: '/contact',
+                element: <ContactUs></ContactUs>
             },
             {
                 path: '/product-details/:id',

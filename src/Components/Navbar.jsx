@@ -46,6 +46,9 @@ const Navbar = () => {
                                 <NavLink to="/about" className={({ isActive }) => (isActive ? "text-primary" : "")}>
                                     About
                                 </NavLink>
+                                <NavLink to="/contact" className={({ isActive }) => (isActive ? "text-primary" : "")}>
+                                    Contact
+                                </NavLink>
                             </li>
                         </ul>
                     </div>
@@ -71,6 +74,11 @@ const Navbar = () => {
                         <li>
                             <NavLink to="/about" className={({ isActive }) => (isActive ? "text-primary" : "")}>
                                 About
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/contact" className={({ isActive }) => (isActive ? "text-primary" : "")}>
+                                Contact
                             </NavLink>
                         </li>
                     </ul>
