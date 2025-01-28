@@ -1,8 +1,13 @@
+import { Helmet } from 'react-helmet';
 import aboutImage from '../assets/all.jpg';
 
 const AboutUs = () => {
     return (
         <div className="bg-base-300">
+
+            <Helmet>
+                <title>About | Tech Discovery</title>
+            </Helmet>
 
             <div className="max-w-screen-xl mx-auto px-6 sm:px-8 py-12">
 
@@ -84,7 +89,7 @@ const AboutUs = () => {
                     <p className="mt-3 text-lg max-w-2xl mx-auto">
                         Whether you're a tech enthusiast, a developer, or a business leader, Tech Discovery is your go-to source for industry insights and trends.
                     </p>
-                    <a 
+                    <a
                         href="mailto:support@techdiscovery.com"
                         className="inline-block mt-6 bg-white text-primary font-semibold px-8 py-4 rounded-lg shadow-md hover:bg-gray-200 transition"
                     >

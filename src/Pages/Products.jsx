@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import { FiThumbsUp, FiCheckCircle } from 'react-icons/fi';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet';
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -117,6 +118,9 @@ const Products = () => {
 
   return (
     <div className="container mx-auto px-4 py-12 sm:pb-16 lg:pb-24">
+      <Helmet>
+        <title>Products | Tech Discovery</title>
+      </Helmet>
       {/* Page Title */}
       <h1 className="text-4xl font-bold text-center mb-8 text-gray-800">
         Explore All Products
@@ -169,8 +173,8 @@ const Products = () => {
               <button
                 onClick={() => handleVoteToggle(product._id)}
                 className={`flex items-center justify-center gap-2 mt-4 px-5 py-2 rounded-lg text-sm font-medium transition-transform transform hover:scale-105 ${product.owner.email === user?.email
-                    ? "bg-gray-300 text-gray-600 cursor-not-allowed"
-                    : "bg-blue-500 text-white hover:bg-blue-600"
+                  ? "bg-gray-300 text-gray-600 cursor-not-allowed"
+                  : "bg-blue-500 text-white hover:bg-blue-600"
                   }`}
               >
                 {product?.voters?.includes(user?.email) ? (
@@ -192,8 +196,8 @@ const Products = () => {
             key={pageNum}
             onClick={() => setPage(pageNum)}
             className={`px-4 py-2 mx-1 text-sm font-medium rounded-lg transition-all ${page === pageNum
-                ? "bg-blue-500 text-white"
-                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+              ? "bg-blue-500 text-white"
+              : "bg-gray-200 text-gray-700 hover:bg-gray-300"
               }`}
           >
             {pageNum}

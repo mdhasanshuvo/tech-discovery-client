@@ -1,6 +1,11 @@
+import { Helmet } from "react-helmet";
+
 const ContactUs = () => {
     return (
         <div className="bg-base-300">
+            <Helmet>
+                <title>Contact | Tech Discovery</title>
+            </Helmet>
 
             {/* Hero Section */}
             <section className="relative">
