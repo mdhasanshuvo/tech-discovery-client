@@ -131,9 +131,6 @@ const DashboardLayout = () => {
                   alt="Profile"
                   className="w-10 h-10 rounded-full border-2 border-gray-300"
                 />
-                <span className="absolute hidden group-hover:block text-xs text-white bg-gray-800 px-2 py-1 rounded-md top-full mt-2">
-                  {user?.email || "guest@example.com"}
-                </span>
               </div>
             </div>
           </header>
