@@ -104,60 +104,64 @@ const Products = () => {
     };
 
     return (
-        <div className='container mx-auto px-2'>
-            <div className="featured-section px-6 py-12">
-                <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
-                    Featured Products
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {Products.map((product) => (
-                        <div
-                            key={product._id}
-                            className="card border rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 hover:-translate-y-1 transform"
+        <div className="container mx-auto px-4 py-12 sm:py-16 lg:py-24">
+          <div className="featured-section text-center">
+            <h2 className="text-4xl font-extrabold text-gray-800 mb-10">
+              Featured Products
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {Products.map((product) => (
+                <div
+                  key={product._id}
+                  className="card border rounded-2xl shadow-md hover:shadow-lg transition-transform transform hover:scale-105 duration-300"
+                >
+                  <div className="relative overflow-hidden rounded-t-2xl">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-48 object-cover transition-transform transform hover:scale-110 duration-300"
+                    />
+                  </div>
+                  <div className="p-6 space-y-4">
+                    <h2
+                      onClick={() => navigate(`/product-details/${product._id}`)}
+                      className="text-lg font-bold text-gray-800 cursor-pointer hover:text-blue-600 hover:underline transition"
+                    >
+                      {product.name}
+                    </h2>
+                    <div className="flex flex-wrap gap-2">
+                      {product.tags.map((tag, index) => (
+                        <span
+                          key={index}
+                          className="badge bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium hover:bg-blue-200 transition"
                         >
-                            <img
-                                src={product.image}
-                                alt={product.name}
-                                className="w-full h-48 object-cover rounded-t-2xl"
-                            />
-                            <div className="p-4 space-y-3">
-                                <h2
-                                    onClick={() => navigate(`/product-details/${product._id}`)}
-                                    className="text-lg font-bold text-gray-800 cursor-pointer hover:underline"
-                                >
-                                    {product.name}
-                                </h2>
-                                <p className="flex flex-wrap gap-2">
-                                    {product.tags.map((tag, index) => (
-                                        <span
-                                            key={index}
-                                            className="badge badge-primary bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium hover:bg-blue-200"
-                                        >
-                                            {tag.text}
-                                        </span>
-                                    ))}
-                                </p>
-                                <button
-                                    onClick={() => handleVoteToggle(product._id)}
-                                    className={`flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition-transform transform duration-200 ${product.owner.email === user?.email
-                                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                                        : 'bg-blue-600 text-white hover:bg-blue-700 hover:scale-105'
-                                        }`}
-                                >
-                                    {product.voters?.includes(user?.email) ? (
-                                        <FiCheckCircle className="text-green-500" />
-                                    ) : (
-                                        <FiThumbsUp />
-                                    )}
-                                    <span className="text-sm font-semibold">{product.votes || 0}</span>
-                                </button>
-                            </div>
-                        </div>
-                    ))}
+                          {tag.text}
+                        </span>
+                      ))}
+                    </div>
+                    <button
+                      onClick={() => handleVoteToggle(product._id)}
+                      className={`flex items-center justify-center gap-2 px-4 py-2 w-full rounded-lg transition-transform transform duration-200 font-semibold ${
+                        product.owner.email === user?.email
+                          ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                          : "bg-blue-600 text-white hover:bg-blue-700 hover:scale-105"
+                      }`}
+                    >
+                      {product.voters?.includes(user?.email) ? (
+                        <FiCheckCircle className="text-green-500" />
+                      ) : (
+                        <FiThumbsUp />
+                      )}
+                      <span>{product.votes || 0}</span>
+                    </button>
+                  </div>
                 </div>
+              ))}
             </div>
+          </div>
         </div>
-    );
+      );
+      
 };
 
 export default Products;
