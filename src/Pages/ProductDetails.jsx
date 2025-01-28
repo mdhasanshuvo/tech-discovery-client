@@ -130,123 +130,144 @@ const ProductDetails = () => {
     const isOwner = product.owner.email === user?.email;
 
     return (
-        <div className="container mx-auto px-4 py-6">
-            {/* Product Information */}
-            <div className="flex flex-col md:flex-row gap-6">
-                <img src={product.image} alt={product.name} className="w-full md:w-1/3 rounded shadow-lg" />
-                <div>
-                    <h1 className="text-3xl font-bold text-gray-800">{product.name}</h1>
-                    <p className="mt-4 text-lg">{product.description}</p>
-                    <p className="my-2 text-gray-500">
-                        Tags: {product.tags.map((tag) => tag.text).join(", ")}
-                    </p>
-                    <Link
-                        target="_blank"
-                        className="my-1 text-blue-400 py-1 underline"
-                        to={`${product?.externalLink}`}
-                    >
-                        Visit Product
-                    </Link>
-
-                    {/* Actions: Vote and Report */}
-                    <div className="mt-4 flex items-center gap-6">
-                        <button
-                            onClick={handleVoteToggle}
-                            className={`flex items-center justify-center gap-2 px-4 py-2 rounded ${
-                                isOwner
-                                    ? "bg-gray-400 cursor-not-allowed"
-                                    : "bg-blue-500 text-white hover:bg-blue-600"
-                            }`}
-                            disabled={isOwner}
-                        >
-                            {product?.voters?.includes(user?.email) ? <FiCheckCircle /> : <FiThumbsUp />}
-                            {product.votes || 0}
-                        </button>
-                        {isOwner ? (
-                            <div className="flex items-center gap-2 px-6 py-3 bg-gray-400 text-gray-700 rounded-lg shadow-md">
-                                <FiFlag size={20} />
-                                <span>You cannot report your own product</span>
-                            </div>
-                        ) : (
-                            <button
-                                onClick={handleReport}
-                                className="flex items-center gap-2 px-6 py-3 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600 transition"
-                            >
-                                <FiFlag size={20} />
-                                Report
-                            </button>
-                        )}
-                    </div>
-                </div>
-            </div>
-
-            {/* Reviews Section */}
-            <div className="mt-10">
-                <h2 className="text-2xl font-bold">Reviews</h2>
-                <div className="grid gap-6 mt-6">
-                    {product.reviews?.length ? (
-                        product.reviews.map((review, index) => (
-                            <div key={index} className="p-6 border rounded-lg shadow-lg bg-gray-50">
-                                <div className="flex items-center gap-3">
-                                    <img
-                                        src={review.reviewerImage || "/default-avatar.png"}
-                                        alt={review.reviewerName}
-                                        className="w-10 h-10 rounded-full"
-                                    />
-                                    <h3 className="font-semibold text-xl">{review.reviewerName}</h3>
-                                </div>
-                                <p className="mt-4">{review.reviewDescription}</p>
-                                <div className="mt-2 flex items-center gap-2">
-                                    <Rating
-                                        initialRating={review.rating}
-                                        readonly
-                                        emptySymbol={<FaRegStar className="text-gray-400" />}
-                                        fullSymbol={<FaStar className="text-yellow-400" />}
-                                    />
-                                </div>
-                            </div>
-                        ))
-                    ) : (
-                        <p>No reviews yet.</p>
-                    )}
-                </div>
-            </div>
-
-            {/* Post Review */}
-            <div className="mt-10">
-                <h2 className="text-2xl font-bold">Post a Review</h2>
+        <div className="container mx-auto px-4 py-12 sm:pb-16">
+          {/* Product Information */}
+          <div className="flex flex-col md:flex-row gap-8">
+            {/* Product Image */}
+            <img
+              src={product.image}
+              alt={product.name}
+              className="w-full md:w-1/2 lg:w-1/3 rounded-lg shadow-lg"
+            />
+      
+            {/* Product Details */}
+            <div className="flex-1">
+              <h1 className="text-4xl font-extrabold text-gray-800 mb-4">{product.name}</h1>
+              <p className="text-lg text-gray-700 mb-4">{product.description}</p>
+              <p className="text-gray-500 mb-4">
+                <strong>Tags:</strong>{" "}
+                {product.tags.map((tag, index) => (
+                  <span
+                    key={index}
+                    className="inline-block bg-blue-100 text-blue-700 px-3 py-1 text-sm font-medium rounded-full mr-2"
+                  >
+                    {tag.text}
+                  </span>
+                ))}
+              </p>
+              <Link
+                target="_blank"
+                className="text-blue-600 underline hover:text-blue-800 transition-colors"
+                to={`${product?.externalLink}`}
+              >
+                Visit Product
+              </Link>
+      
+              {/* Actions: Vote and Report */}
+              <div className="mt-6 flex flex-wrap items-center gap-4">
+                <button
+                  onClick={handleVoteToggle}
+                  className={`flex items-center gap-2 px-6 py-3 rounded-lg text-white font-medium transition-transform ${
+                    isOwner
+                      ? "bg-gray-400 cursor-not-allowed"
+                      : "bg-blue-600 hover:bg-blue-700 hover:scale-105"
+                  }`}
+                  disabled={isOwner}
+                >
+                  {product?.voters?.includes(user?.email) ? <FiCheckCircle /> : <FiThumbsUp />}
+                  {product.votes || 0}
+                </button>
                 {isOwner ? (
-                    <div className="p-4 bg-gray-100 border rounded-md">
-                        <p className="text-gray-600">You cannot add a review to your own product.</p>
-                    </div>
+                  <div className="flex items-center gap-2 px-6 py-3 bg-gray-400 text-gray-700 rounded-lg shadow-md">
+                    <FiFlag size={20} />
+                    <span>You cannot report your own product</span>
+                  </div>
                 ) : (
-                    <form onSubmit={handleReviewSubmit} className="grid gap-6 mt-4">
-                        <textarea
-                            value={newReview.reviewDescription}
-                            onChange={(e) =>
-                                setNewReview({ ...newReview, reviewDescription: e.target.value })
-                            }
-                            placeholder="Write your review..."
-                            className="p-4 border rounded-lg shadow-md"
-                            required
-                        ></textarea>
-                        <Rating
-                            onChange={(value) => setNewReview({ ...newReview, rating: value })}
-                            initialRating={newReview.rating}
-                            emptySymbol={<FaRegStar className="text-gray-400" />}
-                            fullSymbol={<FaStar className="text-yellow-400" />}
-                        />
-                        <button
-                            type="submit"
-                            className="p-4 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 transition"
-                        >
-                            Submit Review
-                        </button>
-                    </form>
+                  <button
+                    onClick={handleReport}
+                    className="flex items-center gap-2 px-6 py-3 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600 transition-transform hover:scale-105"
+                  >
+                    <FiFlag size={20} />
+                    Report
+                  </button>
                 )}
+              </div>
             </div>
+          </div>
+      
+          {/* Reviews Section */}
+          <div className="mt-12">
+            <h2 className="text-3xl font-bold text-gray-800 mb-6">Reviews</h2>
+            <div className="grid gap-6">
+              {product.reviews?.length ? (
+                product.reviews.map((review, index) => (
+                  <div
+                    key={index}
+                    className="p-6 border border-gray-200 rounded-lg shadow-lg bg-white"
+                  >
+                    <div className="flex items-center gap-4 mb-4">
+                      <img
+                        src={review.reviewerImage || "/default-avatar.png"}
+                        alt={review.reviewerName}
+                        className="w-12 h-12 rounded-full shadow-sm"
+                      />
+                      <h3 className="text-xl font-semibold text-gray-800">
+                        {review.reviewerName}
+                      </h3>
+                    </div>
+                    <p className="text-gray-700 mb-3">{review.reviewDescription}</p>
+                    <div className="flex items-center gap-1">
+                      <Rating
+                        initialRating={review.rating}
+                        readonly
+                        emptySymbol={<FaRegStar className="text-gray-300" />}
+                        fullSymbol={<FaStar className="text-yellow-400" />}
+                      />
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <p className="text-gray-500">No reviews yet.</p>
+              )}
+            </div>
+          </div>
+      
+          {/* Post a Review */}
+          <div className="mt-12">
+            <h2 className="text-3xl font-bold text-gray-800 mb-6">Post a Review</h2>
+            {isOwner ? (
+              <div className="p-4 bg-gray-100 border rounded-lg">
+                <p className="text-gray-600">You cannot add a review to your own product.</p>
+              </div>
+            ) : (
+              <form onSubmit={handleReviewSubmit} className="grid gap-6">
+                <textarea
+                  value={newReview.reviewDescription}
+                  onChange={(e) =>
+                    setNewReview({ ...newReview, reviewDescription: e.target.value })
+                  }
+                  placeholder="Write your review..."
+                  className="p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                  required
+                ></textarea>
+                <Rating
+                  onChange={(value) => setNewReview({ ...newReview, rating: value })}
+                  initialRating={newReview.rating}
+                  emptySymbol={<FaRegStar className="text-gray-300" />}
+                  fullSymbol={<FaStar className="text-yellow-400" />}
+                />
+                <button
+                  type="submit"
+                  className="px-6 py-3 bg-green-500 text-white font-medium rounded-lg shadow-md hover:bg-green-600 transition-transform hover:scale-105"
+                >
+                  Submit Review
+                </button>
+              </form>
+            )}
+          </div>
         </div>
-    );
+      );
+      
 };
 
 export default ProductDetails;

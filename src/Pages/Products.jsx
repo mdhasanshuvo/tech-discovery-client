@@ -113,7 +113,7 @@ const Products = () => {
 
 
     return (
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4 py-12 sm:pb-16 lg:pb-24">
           {/* Page Title */}
           <h1 className="text-4xl font-bold text-center mb-8 text-gray-800">
             Explore All Products
