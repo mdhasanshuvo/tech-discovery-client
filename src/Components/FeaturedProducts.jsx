@@ -6,7 +6,7 @@ import { FiCheckCircle, FiThumbsUp } from 'react-icons/fi';
 import Swal from 'sweetalert2';
 
 const Products = () => {
-  const [Products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -113,7 +113,7 @@ const Products = () => {
           Featured Products
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {Products.map((product) => (
+          {products.map((product) => (
             <div
               key={product._id}
               className="card border rounded-2xl shadow-md hover:shadow-lg transition-transform transform hover:scale-105 duration-300"
