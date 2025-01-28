@@ -99,6 +99,7 @@ const MyProfile = () => {
                     <h2 className="text-2xl font-bold mt-4 text-gray-800">{user?.displayName || "Name not available"}</h2>
                     <p className="text-gray-600">{user?.email}</p>
                 </div>
+    
                 <div className="mt-8">
                     {subscribed ? (
                         <div className="bg-green-100 text-green-800 py-3 px-4 rounded-md text-center">
@@ -108,7 +109,7 @@ const MyProfile = () => {
                         <>
                             <div className="mb-4">
                                 <label className="block text-gray-600 font-semibold mb-2">Have a Coupon Code?</label>
-                                <div className="flex">
+                                <div className="flex flex-col sm:flex-row">
                                     <input
                                         type="text"
                                         value={couponCode}
@@ -119,13 +120,14 @@ const MyProfile = () => {
                                     />
                                     <button
                                         onClick={handleApplyCoupon}
-                                        className="px-4 py-2 bg-blue-500 text-white font-medium rounded-r-md hover:bg-blue-600 transition duration-300"
+                                        className="mt-2 sm:mt-0 sm:px-4 py-2 bg-blue-500 text-white font-medium rounded-r-md hover:bg-blue-600 transition duration-300"
                                         disabled={couponApplied}
                                     >
                                         Apply
                                     </button>
                                 </div>
                             </div>
+    
                             {appliedCoupon && (
                                 <div className="bg-blue-100 text-blue-700 py-2 px-4 rounded-md text-center mb-4">
                                     <p className="font-medium">
@@ -134,6 +136,7 @@ const MyProfile = () => {
                                     </p>
                                 </div>
                             )}
+    
                             <div className="text-center">
                                 <p className="text-xl font-semibold text-gray-700 mb-2">
                                     Total: ${subscriptionAmount.toFixed(2)}
@@ -151,6 +154,7 @@ const MyProfile = () => {
             </div>
         </div>
     );
+    
 };
 
 export default MyProfile;
