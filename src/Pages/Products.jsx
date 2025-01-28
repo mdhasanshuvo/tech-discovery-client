@@ -113,70 +113,95 @@ const Products = () => {
 
 
     return (
-        <div className="container mx-auto px-4">
-            <h1 className="text-2xl font-bold text-center my-6">Products</h1>
-            <div className="mb-4">
-                <input
-                    type="text"
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    placeholder="Search by tags..."
-                    className="w-full p-2 border border-gray-300 rounded"
+        <div className="container mx-auto px-4 py-8">
+          {/* Page Title */}
+          <h1 className="text-4xl font-bold text-center mb-8 text-gray-800">
+            Explore All Products
+          </h1>
+      
+          {/* Search Input */}
+          <div className="mb-8">
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search products by tags..."
+              className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+            />
+          </div>
+      
+          {/* Product Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {products.map((product) => (
+              <div
+                key={product._id}
+                className="border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 transform hover:scale-105 bg-white"
+              >
+                {/* Product Image */}
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-48 object-cover rounded-t-lg"
                 />
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                {products.map((product) => (
-                    <div
-                        key={product._id}
-                        className="border border-gray-200 rounded-lg shadow-lg p-4 hover:shadow-xl"
-                    >
-                        <img
-                            src={product.image}
-                            alt={product.name}
-                            className="w-full h-40 object-cover rounded mb-4"
-                        />
-                        <h2
-                            onClick={() => navigate(`/product-details/${product._id}`)}
-                            className="text-lg font-semibold cursor-pointer hover:underline"
-                        >
-                            {product.name}
-                        </h2>
-                        <p className="text-gray-600 text-sm mb-4">
-                            Tags: {product.tags.map(tag => tag.text).join(', ')}
-                        </p>
-                        <button
-                            onClick={() => handleVoteToggle(product._id)}
-                            className={`flex items-center justify-center gap-2 px-4 py-2 rounded ${product.owner.email === user?.email
-                                ? 'bg-gray-400'
-                                : 'bg-blue-500 text-white hover:bg-blue-600'
-                                }`}
-                        >
-                            {product?.voters?.includes(user?.email) ? (
-                                <FiCheckCircle />
-                            ) : (
-                                <FiThumbsUp />
-                            )}
-                            {product.votes || 0}
-                        </button>
-                    </div>
-                ))}
-            </div>
-            <div className="flex justify-center mt-6">
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
-                    <button
-                        key={pageNum}
-                        onClick={() => setPage(pageNum)}
-                        className={`px-4 py-2 mx-1 rounded ${page === pageNum
-                            ? 'bg-blue-500 text-white'
-                            : 'bg-gray-200 hover:bg-gray-300'
-                            }`}
-                    >
-                        {pageNum}
-                    </button>
-                ))}
-            </div>
+      
+                {/* Product Details */}
+                <div className="p-4">
+                  <h2
+                    onClick={() => navigate(`/product-details/${product._id}`)}
+                    className="text-lg font-semibold text-gray-800 cursor-pointer hover:text-blue-600 transition-colors"
+                  >
+                    {product.name}
+                  </h2>
+                  <p className="text-sm text-gray-600 mt-2">
+                    Tags:{" "}
+                    {product.tags.map((tag, index) => (
+                      <span
+                        key={index}
+                        className="inline-block px-2 py-1 text-xs font-medium text-blue-700 bg-blue-100 rounded-full mr-2"
+                      >
+                        {tag.text}
+                      </span>
+                    ))}
+                  </p>
+                  <button
+                    onClick={() => handleVoteToggle(product._id)}
+                    className={`flex items-center justify-center gap-2 mt-4 px-5 py-2 rounded-lg text-sm font-medium transition-transform transform hover:scale-105 ${
+                      product.owner.email === user?.email
+                        ? "bg-gray-300 text-gray-600 cursor-not-allowed"
+                        : "bg-blue-500 text-white hover:bg-blue-600"
+                    }`}
+                  >
+                    {product?.voters?.includes(user?.email) ? (
+                      <FiCheckCircle className="text-lg text-green-500" />
+                    ) : (
+                      <FiThumbsUp className="text-lg" />
+                    )}
+                    {product.votes || 0}
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+      
+          {/* Pagination */}
+          <div className="flex justify-center mt-12">
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+              <button
+                key={pageNum}
+                onClick={() => setPage(pageNum)}
+                className={`px-4 py-2 mx-1 text-sm font-medium rounded-lg transition-all ${
+                  page === pageNum
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                }`}
+              >
+                {pageNum}
+              </button>
+            ))}
+          </div>
         </div>
-    );
+      );
+      
 };
 
 export default Products;
