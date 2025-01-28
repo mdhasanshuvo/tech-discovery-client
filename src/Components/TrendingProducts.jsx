@@ -128,91 +128,92 @@ const TrendingProducts = () => {
     };
 
     return (
-        <div className="container mx-auto px-4 my-8">
-            <h2 className="text-3xl font-extrabold text-center mb-8 text-gray-800">
-                Trending Products
-            </h2>
-            {/* Coupon Slider Section */}
-            <div className="my-12">
-                <Slider {...sliderSettings}>
-                    {coupons.map((coupon) => (
-                        <div
-                            key={coupon._id}
-                            className="p-8 bg-gradient-to-br from-green-100 to-green-200 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 text-center flex flex-col items-center"
-                        >
-                            <h3 className="text-2xl font-bold text-green-800 mb-4 tracking-wider">
-                               Use Code: {coupon.code}
-                            </h3>
-                            <p className="text-gray-700 text-sm mb-2 italic">{coupon.description}</p>
-                            <p className="text-xl font-semibold text-green-900 mb-3">
-                                🎉 {coupon.discount}% Off
-                            </p>
-                            <div className="bg-white py-2 px-4 rounded-full shadow-md">
-                                <span className="text-sm font-medium text-gray-600">
-                                    Expires on:{" "}
-                                </span>
-                                <span className="text-sm font-bold text-red-600">
-                                    {new Date(coupon.expiryDate).toLocaleDateString()}
-                                </span>
-                            </div>
-                        </div>
+        <div className="container mx-auto px-4 pb-12 sm:pb-16 lg:pb-24">
+          <h2 className="text-4xl font-extrabold text-center mb-12 text-gray-800 mt-6">
+            Trending Products
+          </h2>
+      
+          {/* Coupon Slider Section */}
+          <div className="my-12">
+            <Slider {...sliderSettings}>
+              {coupons.map((coupon) => (
+                <div
+                  key={coupon._id}
+                  className="p-8 bg-gradient-to-br from-green-100 to-green-300 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center flex flex-col items-center"
+                >
+                  <h3 className="text-2xl font-bold text-green-900 mb-4">
+                    Use Code: <span className="underline">{coupon.code}</span>
+                  </h3>
+                  <p className="text-gray-700 text-sm italic mb-3">{coupon.description}</p>
+                  <p className="text-xl font-semibold text-green-900 mb-4">
+                    🎉 {coupon.discount}% Off
+                  </p>
+                  <div className="bg-white py-2 px-4 rounded-full shadow-md">
+                    <span className="text-sm font-medium text-gray-600">Expires on: </span>
+                    <span className="text-sm font-bold text-red-600">
+                      {new Date(coupon.expiryDate).toLocaleDateString()}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </Slider>
+          </div>
+      
+          {/* Trending Products Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {products.map((product) => (
+              <div
+                key={product._id}
+                className="card bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-transform transform hover:scale-105 duration-300"
+              >
+                <div className="relative overflow-hidden">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-56 object-cover transition-transform duration-300 hover:scale-110"
+                  />
+                </div>
+                <div className="p-6">
+                  <h2
+                    onClick={() => navigate(`/product-details/${product._id}`)}
+                    className="text-lg font-semibold text-gray-800 cursor-pointer hover:text-blue-600 transition-colors duration-300"
+                  >
+                    {product.name}
+                  </h2>
+                  <div className="flex flex-wrap gap-2 my-3">
+                    {product.tags.map((tag, index) => (
+                      <span
+                        key={index}
+                        className="px-3 py-1 text-sm bg-blue-100 text-blue-800 rounded-full"
+                      >
+                        {tag.text}
+                      </span>
                     ))}
-                </Slider>
-            </div>
-
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                {products.map((product) => (
-                    <div
-                        key={product._id}
-                        className="card bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                  </div>
+                  <div className="flex justify-between items-center mt-4">
+                    <button
+                      onClick={() => handleVoteToggle(product._id)}
+                      className={`flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-medium transition-transform transform hover:scale-105 ${
+                        product.owner.email === user?.email
+                          ? "bg-gray-300 text-gray-600 cursor-not-allowed"
+                          : "bg-blue-600 text-white hover:bg-blue-700"
+                      }`}
                     >
-                        <img
-                            src={product.image}
-                            alt={product.name}
-                            className="w-full h-56 object-cover transition-transform duration-300 hover:scale-105"
-                        />
-                        <div className="p-4">
-                            <h2
-                                onClick={() => navigate(`/product-details/${product._id}`)}
-                                className="text-lg font-semibold text-gray-700 cursor-pointer hover:text-blue-500 transition-colors duration-300"
-                            >
-                                {product.name}
-                            </h2>
-                            <div className="flex gap-2 my-3 flex-wrap">
-                                {product.tags.map((tag, index) => (
-                                    <span
-                                        key={index}
-                                        className="px-3 py-1 text-sm bg-blue-100 text-blue-800 rounded-full"
-                                    >
-                                        {tag.text}
-                                    </span>
-                                ))}
-                            </div>
-                            <div className="flex justify-between items-center mt-4">
-                                <button
-                                    onClick={() => handleVoteToggle(product._id)}
-                                    className={`flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-medium transition-transform transform hover:scale-105 ${product.owner.email === user?.email
-                                        ? "bg-gray-300 text-gray-600 cursor-not-allowed"
-                                        : "bg-blue-600 text-white hover:bg-blue-700"
-                                        }`}
-                                >
-                                    {product.voters?.includes(user?.email) ? (
-                                        <FiCheckCircle className="text-lg" />
-                                    ) : (
-                                        <FiThumbsUp className="text-lg" />
-                                    )}
-                                    {product.votes || 0}
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
-
-
+                      {product.voters?.includes(user?.email) ? (
+                        <FiCheckCircle className="text-lg text-green-500" />
+                      ) : (
+                        <FiThumbsUp className="text-lg" />
+                      )}
+                      {product.votes || 0}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-    );
+      );
+      
 };
 
 export default TrendingProducts;

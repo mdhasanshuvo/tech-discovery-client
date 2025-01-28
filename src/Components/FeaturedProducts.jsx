@@ -106,7 +106,7 @@ const Products = () => {
     return (
         <div className="container mx-auto px-4 py-12 sm:py-16 lg:py-24">
           <div className="featured-section text-center">
-            <h2 className="text-4xl font-extrabold text-gray-800 mb-10">
+            <h2 className="text-4xl font-extrabold text-gray-800 mb-10 mt-6">
               Featured Products
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
