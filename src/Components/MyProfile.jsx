@@ -28,7 +28,7 @@ const MyProfile = () => {
         if (user?.email) {
             checkSubscription();
         }
-    }, [user?.email]);
+    }, [user?.email, subscribed]);
 
     const handleApplyCoupon = async () => {
         if (!couponCode.trim()) {
@@ -99,7 +99,7 @@ const MyProfile = () => {
                     <h2 className="text-2xl font-bold mt-4 text-gray-800">{user?.displayName || "Name not available"}</h2>
                     <p className="text-gray-600">{user?.email}</p>
                 </div>
-    
+
                 <div className="mt-8">
                     {subscribed ? (
                         <div className="bg-green-100 text-green-800 py-3 px-4 rounded-md text-center">
@@ -127,7 +127,7 @@ const MyProfile = () => {
                                     </button>
                                 </div>
                             </div>
-    
+
                             {appliedCoupon && (
                                 <div className="bg-blue-100 text-blue-700 py-2 px-4 rounded-md text-center mb-4">
                                     <p className="font-medium">
@@ -136,7 +136,7 @@ const MyProfile = () => {
                                     </p>
                                 </div>
                             )}
-    
+
                             <div className="text-center">
                                 <p className="text-xl font-semibold text-gray-700 mb-2">
                                     Total: ${subscriptionAmount.toFixed(2)}
@@ -154,7 +154,7 @@ const MyProfile = () => {
             </div>
         </div>
     );
-    
+
 };
 
 export default MyProfile;

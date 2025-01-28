@@ -24,22 +24,20 @@ const ProductDetails = () => {
       }
     };
     fetchProduct();
-  }, [id]);
+  }, [id,newReview]);
 
   // Handle voting (upvote/downvote)
-  const handleVoteToggle = async (id) => {
+  const handleVoteToggle = async () => {
     if (!user) {
       Swal.fire({
         icon: 'warning',
         title: 'Please login first!',
         text: 'You need to be logged in to vote.',
       });
-      navigate('/auth/login');
       return;
     }
 
-    const product = products.find((prod) => prod._id === id);
-
+    // Prevent voting on your own product
     if (product.owner.email === user?.email) {
       Swal.fire({
         icon: 'error',
@@ -49,13 +47,13 @@ const ProductDetails = () => {
       return;
     }
 
-    // Ensure voters array exists and is initialized
+    // Ensure the voters array exists and handle vote toggle
     const voters = product.voters || [];
     const isAlreadyVoted = voters.includes(user?.email);
 
     try {
       if (isAlreadyVoted) {
-        // Send a downvote request (remove vote)
+        // Send a downvote request
         await axios.patch(`https://product-hunt-server-five.vercel.app/products/${id}/downvote`, {
           userEmail: user?.email,
         });
@@ -64,20 +62,15 @@ const ProductDetails = () => {
           title: 'Your vote was removed!',
           text: 'You have successfully removed your vote.',
         });
-        // Update both `votes` and `voters` in the local state
-        setProducts((prevProducts) =>
-          prevProducts.map((product) =>
-            product._id === id
-              ? {
-                ...product,
-                votes: product.votes - 1,
-                voters: voters.filter((email) => email !== user?.email),
-              }
-              : product
-          )
-        );
+
+        // Update the product state
+        setProduct((prevProduct) => ({
+          ...prevProduct,
+          votes: prevProduct.votes - 1,
+          voters: voters.filter((email) => email !== user?.email),
+        }));
       } else {
-        // Send an upvote request (add vote)
+        // Send an upvote request
         await axios.patch(`https://product-hunt-server-five.vercel.app/products/${id}/upvote`, {
           userEmail: user?.email,
         });
@@ -86,18 +79,13 @@ const ProductDetails = () => {
           title: 'Your vote was added!',
           text: 'You have successfully upvoted this product.',
         });
-        // Update both `votes` and `voters` in the local state
-        setProducts((prevProducts) =>
-          prevProducts.map((product) =>
-            product._id === id
-              ? {
-                ...product,
-                votes: (product.votes || 0) + 1, // Ensure votes is a number
-                voters: [...voters, user?.email],
-              }
-              : product
-          )
-        );
+
+        // Update the product state
+        setProduct((prevProduct) => ({
+          ...prevProduct,
+          votes: (prevProduct.votes || 0) + 1, // Handle cases where votes might be undefined
+          voters: [...voters, user?.email],
+        }));
       }
     } catch (error) {
       console.error('Error updating vote:', error);
@@ -108,6 +96,7 @@ const ProductDetails = () => {
       });
     }
   };
+
 
 
   // Handle reporting
@@ -211,8 +200,8 @@ const ProductDetails = () => {
             <button
               onClick={handleVoteToggle}
               className={`flex items-center gap-2 px-6 py-3 rounded-lg text-white font-medium transition-transform ${isOwner
-                  ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-blue-600 hover:bg-blue-700 hover:scale-105"
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-blue-600 hover:bg-blue-700 hover:scale-105"
                 }`}
               disabled={isOwner}
             >
