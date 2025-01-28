@@ -15,7 +15,7 @@ const MyProfile = () => {
     useEffect(() => {
         const checkSubscription = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/user/subscription`, {
+                const response = await axios.get(`https://product-hunt-server-five.vercel.app/user/subscription`, {
                     params: { email: user.email },
                     withCredentials: true,
                 });
@@ -50,7 +50,7 @@ const MyProfile = () => {
         }
 
         try {
-            const response = await axios.get(`http://localhost:5000/coupons/validate`, {
+            const response = await axios.get(`https://product-hunt-server-five.vercel.app/coupons/validate`, {
                 params: { code: couponCode },
                 withCredentials: true,
             });

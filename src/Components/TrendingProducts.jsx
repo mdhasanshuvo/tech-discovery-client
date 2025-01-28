@@ -18,7 +18,7 @@ const TrendingProducts = () => {
         // Fetch trending products from the API
         const fetchTrendingProducts = async () => {
             try {
-                const response = await axios.get("http://localhost:5000/tproducts/trending");
+                const response = await axios.get("https://product-hunt-server-five.vercel.app/tproducts/trending");
                 setProducts(response.data);
             } catch (error) {
                 console.error("Error fetching trending products:", error);
@@ -28,7 +28,7 @@ const TrendingProducts = () => {
         // Fetch coupons from the API
         const fetchCoupons = async () => {
             try {
-                const response = await axios.get("http://localhost:5000/valid");
+                const response = await axios.get("https://product-hunt-server-five.vercel.app/valid");
                 setCoupons(response.data);
                 console.log(response.data);
             } catch (error) {
@@ -66,7 +66,7 @@ const TrendingProducts = () => {
 
         try {
             if (isAlreadyVoted) {
-                await axios.patch(`http://localhost:5000/products/${id}/downvote`, {
+                await axios.patch(`https://product-hunt-server-five.vercel.app/products/${id}/downvote`, {
                     userEmail: user?.email,
                 });
                 Swal.fire({
@@ -86,7 +86,7 @@ const TrendingProducts = () => {
                     )
                 );
             } else {
-                await axios.patch(`http://localhost:5000/products/${id}/upvote`, {
+                await axios.patch(`https://product-hunt-server-five.vercel.app/products/${id}/upvote`, {
                     userEmail: user?.email,
                 });
                 Swal.fire({

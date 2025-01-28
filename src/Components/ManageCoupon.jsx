@@ -15,7 +15,7 @@ const ManageCoupon = () => {
     // Fetch all coupons
     const fetchCoupons = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/coupons');
+            const response = await axios.get('https://product-hunt-server-five.vercel.app/coupons');
             setCoupons(response.data);
         } catch (error) {
             console.error('Error fetching coupons:', error);
@@ -29,11 +29,11 @@ const ManageCoupon = () => {
         try {
             if (editing) {
                 // Update coupon
-                await axios.patch(`http://localhost:5000/coupons/${editing}`, form);
+                await axios.patch(`https://product-hunt-server-five.vercel.app/coupons/${editing}`, form);
                 Swal.fire('Success!', 'Coupon updated successfully!', 'success');
             } else {
                 // Add coupon
-                await axios.post('http://localhost:5000/coupons', form);
+                await axios.post('https://product-hunt-server-five.vercel.app/coupons', form);
                 Swal.fire('Success!', 'Coupon added successfully!', 'success');
             }
 
@@ -57,7 +57,7 @@ const ManageCoupon = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    await axios.delete(`http://localhost:5000/coupons/${id}`);
+                    await axios.delete(`https://product-hunt-server-five.vercel.app/coupons/${id}`);
                     Swal.fire('Deleted!', 'Coupon has been deleted.', 'success');
                     fetchCoupons();
                 } catch (error) {
@@ -84,89 +84,89 @@ const ManageCoupon = () => {
     }, []);
 
     return (
-        <div className="p-6">
-            <h2 className="text-3xl font-bold mb-6 text-center">Manage Coupons</h2>
-
-            {/* Form */}
-            <form
-                onSubmit={handleSubmit}
-                className="bg-white shadow-lg rounded-lg p-6 mb-8 grid gap-4"
-            >
-                <h3 className="text-xl font-semibold text-gray-700">
-                    {editing ? 'Edit Coupon' : 'Add New Coupon'}
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input
-                        type="text"
-                        placeholder="Coupon Code"
-                        value={form.code}
-                        onChange={(e) => setForm({ ...form, code: e.target.value })}
-                        required
-                        className="input input-bordered w-full"
-                    />
-                    <input
-                        type="date"
-                        placeholder="Expiry Date"
-                        value={form.expiryDate}
-                        onChange={(e) => setForm({ ...form, expiryDate: e.target.value })}
-                        required
-                        className="input input-bordered w-full"
-                    />
-                    <textarea
-                        placeholder="Coupon Description"
-                        value={form.description}
-                        onChange={(e) => setForm({ ...form, description: e.target.value })}
-                        required
-                        className="textarea textarea-bordered w-full md:col-span-2"
-                    ></textarea>
-                    <input
-                        type="number"
-                        placeholder="Discount Amount (%)"
-                        value={form.discount}
-                        onChange={(e) => setForm({ ...form, discount: e.target.value })}
-                        required
-                        className="input input-bordered w-full"
-                    />
-                </div>
-                <button
-                    type="submit"
-                    className="btn btn-primary mt-4 w-full"
-                >
-                    {editing ? 'Update Coupon' : 'Add Coupon'}
-                </button>
-            </form>
-
-            {/* Coupons List */}
+        <div className="p-6 bg-gray-50 min-h-screen">
+          <h2 className="text-3xl font-bold text-center text-primary mb-6">Manage Coupons</h2>
+    
+          {/* Coupon Form */}
+          <form
+            onSubmit={handleSubmit}
+            className="bg-white shadow-lg rounded-lg p-6 mb-8 grid gap-4"
+          >
+            <h3 className="text-xl font-semibold text-gray-700">
+              {editing ? 'Edit Coupon' : 'Add New Coupon'}
+            </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {coupons.map((coupon) => (
-                    <div key={coupon._id} className="card bg-white shadow-md rounded-lg p-4">
-                        <h3 className="text-lg font-bold text-gray-800">{coupon.code}</h3>
-                        <p className="text-sm text-gray-600">
-                            Expiry: {new Date(coupon.expiryDate).toLocaleDateString()}
-                        </p>
-                        <p className="text-gray-700">{coupon.description}</p>
-                        <p className="text-sm text-gray-600 font-bold">
-                            Discount: {coupon.discount}%
-                        </p>
-                        <div className="mt-4 flex justify-between">
-                            <button
-                                onClick={() => handleEdit(coupon)}
-                                className="btn btn-warning btn-sm"
-                            >
-                                Edit
-                            </button>
-                            <button
-                                onClick={() => handleDelete(coupon._id)}
-                                className="btn btn-error btn-sm"
-                            >
-                                Delete
-                            </button>
-                        </div>
-                    </div>
-                ))}
+              <input
+                type="text"
+                placeholder="Coupon Code"
+                value={form.code}
+                onChange={(e) => setForm({ ...form, code: e.target.value })}
+                required
+                className="input input-bordered w-full"
+              />
+              <input
+                type="date"
+                placeholder="Expiry Date"
+                value={form.expiryDate}
+                onChange={(e) => setForm({ ...form, expiryDate: e.target.value })}
+                required
+                className="input input-bordered w-full"
+              />
+              <textarea
+                placeholder="Coupon Description"
+                value={form.description}
+                onChange={(e) => setForm({ ...form, description: e.target.value })}
+                required
+                className="textarea textarea-bordered w-full md:col-span-2"
+              ></textarea>
+              <input
+                type="number"
+                placeholder="Discount Amount (%)"
+                value={form.discount}
+                onChange={(e) => setForm({ ...form, discount: e.target.value })}
+                required
+                className="input input-bordered w-full"
+              />
             </div>
+            <button
+              type="submit"
+              className="btn btn-primary mt-4 w-full"
+            >
+              {editing ? 'Update Coupon' : 'Add Coupon'}
+            </button>
+          </form>
+    
+          {/* Coupons List */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {coupons.map((coupon) => (
+              <div key={coupon._id} className="card bg-white shadow-md rounded-lg p-6">
+                <h3 className="text-lg font-bold text-gray-800">{coupon.code}</h3>
+                <p className="text-sm text-gray-600">
+                  Expiry: {new Date(coupon.expiryDate).toLocaleDateString()}
+                </p>
+                <p className="text-gray-700">{coupon.description}</p>
+                <p className="text-sm text-gray-600 font-bold">
+                  Discount: {coupon.discount}%
+                </p>
+                <div className="mt-4 flex justify-between">
+                  <button
+                    onClick={() => handleEdit(coupon)}
+                    className="btn btn-warning btn-sm"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(coupon._id)}
+                    className="btn btn-error btn-sm"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-    );
+      );
 };
 
 export default ManageCoupon;

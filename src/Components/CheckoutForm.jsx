@@ -14,7 +14,7 @@ const CheckoutForm = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.post('http://localhost:5000/create-payment-intent', { price: subscriptionAmount }) // Use subscriptionAmount here
+        axios.post('https://product-hunt-server-five.vercel.app/create-payment-intent', { price: subscriptionAmount }) // Use subscriptionAmount here
             .then(res => {
                 setClientSecret(res.data.clientSecret);
             })
@@ -60,7 +60,7 @@ const CheckoutForm = () => {
                 setTransactionId(paymentIntent.id);
 
                 axios.patch(
-                    `http://localhost:5000/user/subscribe`,
+                    `https://product-hunt-server-five.vercel.app/user/subscribe`,
                     { email: user.email, subscribed: true },
                     { withCredentials: true }
                 );

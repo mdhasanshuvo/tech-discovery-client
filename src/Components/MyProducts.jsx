@@ -13,7 +13,7 @@ const MyProducts = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/products', {
+                const response = await axios.get('https://product-hunt-server-five.vercel.app/products', {
                     params: { email: user.email },
                 });
                 setProducts(response.data);
@@ -41,7 +41,7 @@ const MyProducts = () => {
 
         if (confirm.isConfirmed) {
             try {
-                await axios.delete(`http://localhost:5000/products/${id}`);
+                await axios.delete(`https://product-hunt-server-five.vercel.app/products/${id}`);
                 setProducts(products.filter((product) => product._id !== id));
                 Swal.fire('Deleted!', 'Your product has been deleted.', 'success');
             } catch (error) {
@@ -63,7 +63,7 @@ const MyProducts = () => {
 
     const handleUpdate = async () => {
         try {
-            await axios.put(`http://localhost:5000/products/${selectedProduct._id}`, selectedProduct);
+            await axios.put(`https://product-hunt-server-five.vercel.app/products/${selectedProduct._id}`, selectedProduct);
             setProducts((prevProducts) =>
                 prevProducts.map((product) =>
                     product._id === selectedProduct._id ? { ...product, ...selectedProduct } : product

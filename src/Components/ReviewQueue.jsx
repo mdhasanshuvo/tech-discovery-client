@@ -10,7 +10,7 @@ const ReviewQueue = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/queue-products/review-queue');
+                const response = await axios.get('https://product-hunt-server-five.vercel.app/queue-products/review-queue');
                 setProducts(response.data);
             } catch (error) {
                 console.error('Error fetching review queue:', error);
@@ -23,7 +23,7 @@ const ReviewQueue = () => {
 
     const updateProductStatus = async (id, status) => {
         try {
-            const response = await axios.patch(`http://localhost:5000/products/${id}/status`, { status });
+            const response = await axios.patch(`https://product-hunt-server-five.vercel.app/products/${id}/status`, { status });
             Swal.fire('Success', response.data.message, 'success');
             setProducts((prevProducts) =>
                 prevProducts.map((product) =>
@@ -38,7 +38,7 @@ const ReviewQueue = () => {
 
     const makeFeatured = async (id) => {
         try {
-            const response = await axios.patch(`http://localhost:5000/products/${id}/featured`);
+            const response = await axios.patch(`https://product-hunt-server-five.vercel.app/products/${id}/featured`);
             Swal.fire('Success', response.data.message, 'success');
             setProducts((prevProducts) =>
                 prevProducts.map((product) =>

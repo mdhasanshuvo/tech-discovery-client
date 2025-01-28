@@ -17,7 +17,7 @@ const ProductDetails = () => {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/products/${id}`);
+                const response = await axios.get(`https://product-hunt-server-five.vercel.app/products/${id}`);
                 setProduct(response.data.product);
             } catch (error) {
                 console.error("Error fetching product:", error);
@@ -41,7 +41,7 @@ const ProductDetails = () => {
 
         try {
             if (isAlreadyVoted) {
-                await axios.patch(`http://localhost:5000/products/${id}/downvote`, {
+                await axios.patch(`https://product-hunt-server-five.vercel.app/products/${id}/downvote`, {
                     userEmail: user?.email,
                 });
                 setProduct((prevProduct) => ({
@@ -51,7 +51,7 @@ const ProductDetails = () => {
                 }));
                 Swal.fire("Your vote was removed!", "", "success");
             } else {
-                await axios.patch(`http://localhost:5000/products/${id}/upvote`, {
+                await axios.patch(`https://product-hunt-server-five.vercel.app/products/${id}/upvote`, {
                     userEmail: user?.email,
                 });
                 setProduct((prevProduct) => ({
@@ -83,7 +83,7 @@ const ProductDetails = () => {
             });
 
             if (reason.isConfirmed && reason.value) {
-                await axios.patch(`http://localhost:5000/products/${id}/report`, {
+                await axios.patch(`https://product-hunt-server-five.vercel.app/products/${id}/report`, {
                     userEmail: user.email,
                     reportReason: reason.value,
                 });
@@ -104,7 +104,7 @@ const ProductDetails = () => {
         }
 
         try {
-            const response = await axios.patch(`http://localhost:5000/products/${id}/review`, {
+            const response = await axios.patch(`https://product-hunt-server-five.vercel.app/products/${id}/review`, {
                 reviewerName: user.displayName,
                 reviewerImage: user.photoURL,
                 userEmail: user.email,

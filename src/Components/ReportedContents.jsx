@@ -11,7 +11,7 @@ const ReportedContents = () => {
     useEffect(() => {
         const fetchReportedProducts = async () => {
             try {
-                const response = await axios.get("http://localhost:5000/reported-products");
+                const response = await axios.get("https://product-hunt-server-five.vercel.app/reported-products");
                 setReportedProducts(response.data);
             } catch (error) {
                 console.error("Error fetching reported products:", error);
@@ -33,7 +33,7 @@ const ReportedContents = () => {
 
         if (confirmDelete.isConfirmed) {
             try {
-                await axios.delete(`http://localhost:5000/products/${productId}`);
+                await axios.delete(`https://product-hunt-server-five.vercel.app/products/${productId}`);
                 Swal.fire("Deleted!", "The product has been deleted.", "success");
 
                 // Remove the product from the state

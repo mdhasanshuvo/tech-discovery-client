@@ -27,7 +27,7 @@ const Login = () => {
                 };
 
                 // Add user to the database
-                axios.post('http://localhost:5000/users', userInfo)
+                axios.post('https://product-hunt-server-five.vercel.app/users', userInfo)
                     .then(res => {
                         if (res.data.insertedId) {
                             console.log('User added to the database');

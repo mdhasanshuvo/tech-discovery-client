@@ -16,7 +16,7 @@ const Products = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/product', {
+                const response = await axios.get('https://product-hunt-server-five.vercel.app/product', {
                     params: { page, search },
                 });
                 setProducts(response.data.products);
@@ -56,7 +56,7 @@ const Products = () => {
         try {
             if (isAlreadyVoted) {
                 // Send a downvote request (remove vote)
-                await axios.patch(`http://localhost:5000/products/${id}/downvote`, {
+                await axios.patch(`https://product-hunt-server-five.vercel.app/products/${id}/downvote`, {
                     userEmail: user?.email,
                 });
                 Swal.fire({
@@ -78,7 +78,7 @@ const Products = () => {
                 );
             } else {
                 // Send an upvote request (add vote)
-                await axios.patch(`http://localhost:5000/products/${id}/upvote`, {
+                await axios.patch(`https://product-hunt-server-five.vercel.app/products/${id}/upvote`, {
                     userEmail: user?.email,
                 });
                 Swal.fire({

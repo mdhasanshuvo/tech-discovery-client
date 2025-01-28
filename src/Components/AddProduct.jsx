@@ -22,7 +22,7 @@ const AddProduct = () => {
         const fetchEligibility = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:5000/user/eligibility?email=${user?.email}`
+                    `https://product-hunt-server-five.vercel.app/user/eligibility?email=${user?.email}`
                 );
                 setCanAddProduct(response.data.canAddProduct);
             } catch (error) {
@@ -61,7 +61,7 @@ const AddProduct = () => {
         console.log("Product Data:", productData);
 
         try {
-            const response = await axios.post("http://localhost:5000/products", {
+            const response = await axios.post("https://product-hunt-server-five.vercel.app/products", {
                 ...productData,
                 owner: {
                     name: user?.displayName,

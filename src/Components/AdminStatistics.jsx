@@ -17,7 +17,7 @@ const AdminStatistics = () => {
     useEffect(() => {
         const fetchStatistics = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/admin/statistics');
+                const response = await axios.get('https://product-hunt-server-five.vercel.app/admin/statistics');
                 setData(response.data);
             } catch (error) {
                 console.error('Error fetching statistics:', error);
