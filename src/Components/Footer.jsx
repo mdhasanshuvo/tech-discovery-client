@@ -45,7 +45,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="text-primary hover:text-primary-focus"
               >
-                <FaFacebook className="h-6 w-6" />
+                <FaFacebook className="h-7 w-7 transition-transform transform hover:scale-110" />
               </a>
               <a
                 href="https://twitter.com"
@@ -53,7 +53,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="text-primary hover:text-primary-focus"
               >
-                <FaTwitter className="h-6 w-6" />
+                <FaTwitter className="h-7 w-7 transition-transform transform hover:scale-110" />
               </a>
               <a
                 href="https://linkedin.com"
@@ -61,7 +61,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="text-primary hover:text-primary-focus"
               >
-                <FaLinkedin className="h-6 w-6" />
+                <FaLinkedin className="h-7 w-7 transition-transform transform hover:scale-110" />
               </a>
             </div>
           </div>
@@ -71,7 +71,7 @@ const Footer = () => {
 
         {/* Footer Bottom */}
         <div className="text-center">
-          <p className="text-sm">
+          <p className="text-sm text-gray-600">
             © {new Date().getFullYear()} Tech Discovery. All rights reserved.
           </p>
         </div>
