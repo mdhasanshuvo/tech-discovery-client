@@ -59,10 +59,10 @@ const AdminStatistics = () => {
     };
 
     return (
-        <div className="p-4">
-            <h2 className="text-xl font-bold mb-4">Admin Statistics</h2>
+        <div className="p-6 bg-gray-50 min-h-screen">
+            <h2 className="text-2xl font-bold text-center text-primary mb-6">Statistics</h2>
             <div className="flex justify-center items-center">
-                <div className="w-full max-w-md">
+                <div className="w-full max-w-min px-4 py-6 bg-white shadow-lg rounded-lg border border-gray-300">
                     <Pie data={chartData} />
                 </div>
             </div>
