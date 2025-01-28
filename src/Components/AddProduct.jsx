@@ -88,75 +88,114 @@ const AddProduct = () => {
 
 
     return (
-        <form onSubmit={handleSubmit} className="max-w-md mx-auto p-4 bg-white shadow rounded">
-            <h2 className="text-xl font-bold mb-4">Add a New Product</h2>
+        <div className="p-6 bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
+            <form onSubmit={handleSubmit} className="max-w-xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+                <h2 className="text-2xl font-bold text-center mb-6">Add a New Product</h2>
 
-            {!canAddProduct && (
-                <div className="text-red-600 mb-4">
-                    You have reached the product limit. Purchase a membership subscription to add more products.
+                {!canAddProduct && (
+                    <div className="text-red-600 mb-4">
+                        You have reached the product limit. Purchase a membership subscription to add more products.
+                    </div>
+                )}
+
+                {/* Product Name Field */}
+                <input
+                    type="text"
+                    name="name"
+                    value={productData.name}
+                    onChange={handleChange}
+                    placeholder="Product Name"
+                    required
+                    className="w-full mb-4 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                    disabled={!canAddProduct}
+                />
+
+                {/* Product Image Input */}
+                <input
+                    type="url"
+                    name="image"
+                    value={productData.image}
+                    onChange={handleChange}
+                    placeholder="Product Image URL"
+                    required
+                    className="w-full mb-4 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                    disabled={!canAddProduct}
+                />
+
+                {/* Description Field */}
+                <textarea
+                    name="description"
+                    value={productData.description}
+                    onChange={handleChange}
+                    placeholder="Product Description"
+                    required
+                    className="w-full mb-4 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                    disabled={!canAddProduct}
+                ></textarea>
+
+                {/* Product Owner Info */}
+                <div className="bg-gray-50 p-4 rounded-lg mb-6">
+                    <h3 className="text-lg font-semibold mb-4">Product Owner Information</h3>
+                    <div className="mb-2">
+                        <label className="block text-gray-700">Owner Name:</label>
+                        <input
+                            type="text"
+                            value={user?.displayName || 'N/A'}
+                            disabled
+                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        />
+                    </div>
+                    <div className="mb-2">
+                        <label className="block text-gray-700">Owner Email:</label>
+                        <input
+                            type="email"
+                            value={user?.email || 'N/A'}
+                            disabled
+                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label className="block text-gray-700">Owner Image:</label>
+                        <img
+                            src={user?.photoURL || "https://via.placeholder.com/150"}
+                            alt="Owner"
+                            className="w-16 h-16 rounded-full border-2 border-gray-300 mb-2"
+                        />
+                    </div>
                 </div>
-            )}
 
-            <input
-                type="text"
-                name="name"
-                value={productData.name}
-                onChange={handleChange}
-                placeholder="Product Name"
-                required
-                className="w-full mb-4 p-2 border rounded"
-                disabled={!canAddProduct}
-            />
+                {/* Tags Input */}
+                <div className="mb-4">
+                    <ReactTags
+                        tags={productData.tags}
+                        handleDelete={(i) => handleTagsChange(productData.tags.filter((_, index) => index !== i))}
+                        handleAddition={(tag) => handleTagsChange([...productData.tags, tag])}
+                        placeholder="Add tags (e.g., tech, gadget, etc.)"
+                        readOnly={!canAddProduct}
+                    />
+                </div>
 
-            <input
-                type="url"
-                name="image"
-                value={productData.image}
-                onChange={handleChange}
-                placeholder="Image URL"
-                required
-                className="w-full mb-4 p-2 border rounded"
-                disabled={!canAddProduct}
-            />
+                {/* External Link Field */}
+                <input
+                    type="url"
+                    name="externalLink"
+                    value={productData.externalLink}
+                    onChange={handleChange}
+                    placeholder="External Link (Website or Landing Page)"
+                    className="w-full mb-4 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                    disabled={!canAddProduct}
+                />
 
-            <textarea
-                name="description"
-                value={productData.description}
-                onChange={handleChange}
-                placeholder="Description"
-                required
-                className="w-full mb-4 p-2 border rounded"
-                disabled={!canAddProduct}
-            ></textarea>
-
-            <ReactTags
-                tags={productData.tags}
-                handleDelete={(i) => handleTagsChange(productData.tags.filter((_, index) => index !== i))}
-                handleAddition={(tag) => handleTagsChange([...productData.tags, tag])}
-                placeholder="Add tags"
-                readOnly={!canAddProduct}
-            />
-
-            <input
-                type="url"
-                name="externalLink"
-                value={productData.externalLink}
-                onChange={handleChange}
-                placeholder="External Link"
-                required
-                className="w-full mb-4 p-2 border rounded"
-                disabled={!canAddProduct}
-            />
-
-            <button
-                type="submit"
-                className={`w-full p-2 rounded ${canAddProduct ? "bg-blue-500 text-white hover:bg-blue-600" : "bg-gray-400 text-gray-700"
-                    }`}
-                disabled={!canAddProduct}
-            >
-                Submit
-            </button>
-        </form>
+                {/* Submit Button */}
+                <button
+                    type="submit"
+                    className={`w-full p-3 rounded-lg text-white ${canAddProduct ? "bg-blue-500 hover:bg-blue-600" : "bg-gray-400 cursor-not-allowed"}`}
+                    disabled={!canAddProduct}
+                >
+                    Submit
+                </button>
+            </form>
+        </div>
     );
 };
 
