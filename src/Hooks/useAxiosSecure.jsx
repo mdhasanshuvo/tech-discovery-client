@@ -6,7 +6,7 @@ const useAxiosSecure = () => {
     const navigate = useNavigate();
 
     const axiosSecureInstance = axios.create({
-        baseURL: "http://localhost:5000",
+        baseURL: "https://product-hunt-server-five.vercel.app",
         headers: {
             Authorization: `Bearer ${localStorage.getItem("access-token")}`,
         },
