@@ -1,7 +1,7 @@
 import { Outlet, Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
-import { FiLogOut, FiUser, FiHome, FiSettings } from "react-icons/fi";
+import { FiLogOut, FiUser, FiHome, FiSettings, FiBarChart2 } from "react-icons/fi";
 import { MdDashboard } from "react-icons/md";
 import useAdmin from "../Hooks/useAdmin";
 import useModerator from "../Hooks/useModerator";
@@ -88,6 +88,7 @@ const DashboardLayout = () => {
           <Helmet>
             <title>User-Dashboard | Tech Discovery</title>
           </Helmet>
+
           <Link
             to="/dashboard/my-profile"
             className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-600 active:bg-blue-700 transition"
@@ -95,6 +96,7 @@ const DashboardLayout = () => {
             <FiUser size={20} />
             <span>My Profile</span>
           </Link>
+
           <Link
             to="/dashboard/add-product"
             className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-600 active:bg-blue-700 transition"
@@ -102,6 +104,7 @@ const DashboardLayout = () => {
             <FiHome size={20} />
             <span>Add Product</span>
           </Link>
+
           <Link
             to="/dashboard/my-products"
             className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-600 active:bg-blue-700 transition"
@@ -109,7 +112,17 @@ const DashboardLayout = () => {
             <FiSettings size={20} />
             <span>My Products</span>
           </Link>
+
+          {/* New Link to Statistics Page */}
+          <Link
+            to="/dashboard/user-statistics"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-600 active:bg-blue-700 transition"
+          >
+            <FiBarChart2 size={20} />
+            <span>My Statistics</span>
+          </Link>
         </>
+
       );
     }
   };
