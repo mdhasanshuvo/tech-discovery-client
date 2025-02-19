@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet';
 import BannerSlider from '../Components/Banner';
 import FeaturedProducts from '../Components/FeaturedProducts';
 import TrendingProducts from '../Components/TrendingProducts';
+import FAQSection from '../Components/FAQSection';
 
 const Home = () => {
     return (
@@ -12,6 +13,7 @@ const Home = () => {
             <BannerSlider></BannerSlider>
             <FeaturedProducts></FeaturedProducts>
             <TrendingProducts></TrendingProducts>
+            <FAQSection></FAQSection>
         </>
     );
 };
