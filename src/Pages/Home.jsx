@@ -4,6 +4,7 @@ import FeaturedProducts from '../Components/FeaturedProducts';
 import TrendingProducts from '../Components/TrendingProducts';
 import FAQSection from '../Components/FAQSection';
 import TestimonialSection from '../Components/TestimonialSection';
+import HowItWorks from '../Components/HowItWorks';
 
 const Home = () => {
     return (
@@ -14,6 +15,7 @@ const Home = () => {
             <BannerSlider></BannerSlider>
             <FeaturedProducts></FeaturedProducts>
             <TrendingProducts></TrendingProducts>
+            <HowItWorks></HowItWorks>
             <TestimonialSection></TestimonialSection>
             <FAQSection></FAQSection>
         </>
