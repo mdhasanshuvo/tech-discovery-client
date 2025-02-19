@@ -134,6 +134,18 @@ const TrendingProducts = () => {
     autoplaySpeed: 3000,
   };
 
+  const handleProductDetails = (id) => {
+    if (!user) {
+      Swal.fire({
+        icon: "warning",
+        title: "Please login first!",
+        text: "You need to be logged in to vote.",
+      });
+      return navigate("/auth/login");
+    }
+    navigate(`/product-details/${id}`)
+  }
+
   return (
     <div className="container mx-auto px-4 pb-12 sm:pb-16 lg:pb-24">
       <h2 className="text-4xl font-extrabold text-center mb-12 text-gray-800 mt-6">
@@ -182,11 +194,16 @@ const TrendingProducts = () => {
             </div>
             <div className="p-6">
               <h2
-                onClick={() => navigate(`/product-details/${product._id}`)}
+                onClick={() => handleProductDetails(product._id)}
                 className="text-lg font-semibold text-gray-800 cursor-pointer hover:text-blue-600 transition-colors duration-300"
               >
                 {product.name}
               </h2>
+              <p className="text-gray-600 text-sm line-clamp-2">
+                {product.description.length > 50
+                  ? product.description.slice(0, 50) + "..."
+                  : product.description}
+              </p>
               <div className="flex flex-wrap gap-2 my-3">
                 {product.tags.map((tag, index) => (
                   <span
@@ -201,8 +218,8 @@ const TrendingProducts = () => {
                 <button
                   onClick={() => handleVoteToggle(product._id)}
                   className={`flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-medium transition-transform transform hover:scale-105 ${product.owner.email === user?.email
-                      ? "bg-gray-300 text-gray-600 cursor-not-allowed"
-                      : "bg-blue-600 text-white hover:bg-blue-700"
+                    ? "bg-gray-300 text-gray-600 cursor-not-allowed"
+                    : "bg-blue-600 text-white hover:bg-blue-700"
                     }`}
                 >
                   {product.voters?.includes(user?.email) ? (

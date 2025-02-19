@@ -116,30 +116,34 @@ const Products = () => {
               </div>
               <div className="p-6 space-y-3">
                 <h2
-                  onClick={()=>handleProductDetails(product._id)}
+                  onClick={() => handleProductDetails(product._id)}
                   className="text-xl font-bold text-gray-900 cursor-pointer hover:text-blue-600 hover:underline transition"
                 >
                   {product.name}
                 </h2>
                 <p className="text-gray-600 text-sm line-clamp-2">
-                  {product.description}
+                  {product.description.length > 50
+                    ? product.description.slice(0, 30) + "..."
+                    : product.description}
                 </p>
-                <div className="flex flex-wrap gap-2">
-                  {product.tags.map((tag, index) => (
-                    <span
-                      key={index}
-                      className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium hover:bg-blue-200 transition"
-                    >
-                      {tag.text}
-                    </span>
-                  ))}
+                <div className="flex justify-center">
+                  <div className="flex flex-wrap gap-2">
+                    {product.tags.map((tag, index) => (
+                      <span
+                        key={index}
+                        className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium hover:bg-blue-200 transition"
+                      >
+                        {tag.text}
+                      </span>
+                    ))}
+                  </div>
                 </div>
                 <div className="flex items-center justify-between mt-4">
                   <button
                     onClick={() => handleVoteToggle(product._id)}
                     className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-transform transform duration-200 font-semibold ${product.owner.email === user?.email
-                        ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                        : "bg-blue-600 text-white hover:bg-blue-700 hover:scale-105"
+                      ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                      : "bg-blue-600 text-white hover:bg-blue-700 hover:scale-105"
                       }`}
                   >
                     {product.voters?.includes(user?.email) ? (
@@ -150,7 +154,7 @@ const Products = () => {
                     <span>{product.votes || 0}</span>
                   </button>
                   <button
-                    onClick={()=>handleProductDetails(product._id)}
+                    onClick={() => handleProductDetails(product._id)}
                     className="px-4 py-2 text-sm font-semibold bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition"
                   >
                     See More
