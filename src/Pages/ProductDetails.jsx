@@ -174,8 +174,8 @@ const ProductDetails = () => {
 
         {/* Product Details */}
         <div className="flex-1">
-          <h1 className="text-4xl font-extrabold text-gray-800 mb-4">{product.name}</h1>
-          <p className="text-lg text-gray-700 mb-4">{product.description}</p>
+          <h1 className="text-4xl font-extrabold text-primary mb-4">{product.name}</h1>
+          <p className="text-lg text-gray-500 mb-4">{product.description}</p>
           <p className="text-gray-500 mb-4">
             <strong>Tags:</strong>{" "}
             {product.tags.map((tag, index) => (
@@ -228,7 +228,7 @@ const ProductDetails = () => {
 
       {/* Reviews Section */}
       <div className="mt-12">
-        <h2 className="text-3xl font-bold text-gray-800 mb-6">Reviews</h2>
+        <h2 className="text-3xl font-bold text-primary mb-6">Reviews</h2>
         <div className="grid gap-6">
           {product.reviews?.length ? (
             product.reviews.map((review, index) => (
@@ -265,10 +265,10 @@ const ProductDetails = () => {
 
       {/* Post a Review */}
       <div className="mt-12">
-        <h2 className="text-3xl font-bold text-gray-800 mb-6">Post a Review</h2>
+        <h2 className="text-3xl font-bold text-primary mb-6">Post a Review</h2>
         {isOwner ? (
           <div className="p-4 bg-gray-100 border rounded-lg">
-            <p className="text-gray-600">You cannot add a review to your own product.</p>
+            <p className="text-gray-500">You cannot add a review to your own product.</p>
           </div>
         ) : (
           <form onSubmit={handleReviewSubmit} className="grid gap-6">

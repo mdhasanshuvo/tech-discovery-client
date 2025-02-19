@@ -23,10 +23,10 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-gray-50">
+    <section className="py-12 sm:py-16 lg:py-20 bg-base-200">
       <div className="container mx-auto px-6 text-center">
         <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-8">How It Works</h2>
-        <p className="text-lg text-gray-600 mb-12">
+        <p className="text-lg text-gray-500 mb-12">
           Discover, submit, and engage with the best tech products on Tech Discovery.
         </p>
 
@@ -37,7 +37,7 @@ const HowItWorks = () => {
                 {step.icon}
               </div>
               <h3 className="text-xl font-semibold text-gray-800 mb-2">{step.title}</h3>
-              <p className="text-gray-600">{step.description}</p>
+              <p className="text-gray-500">{step.description}</p>
             </div>
           ))}
         </div>

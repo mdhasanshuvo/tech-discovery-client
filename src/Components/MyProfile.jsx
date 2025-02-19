@@ -97,7 +97,7 @@ const MyProfile = () => {
                         className="w-28 h-28 rounded-full mx-auto border-4 border-blue-500"
                     />
                     <h2 className="text-2xl font-bold mt-4 text-gray-800">{user?.displayName || "Name not available"}</h2>
-                    <p className="text-gray-600">{user?.email}</p>
+                    <p className="text-gray-500">{user?.email}</p>
                 </div>
 
                 <div className="mt-8">
@@ -108,7 +108,7 @@ const MyProfile = () => {
                     ) : (
                         <>
                             <div className="mb-4">
-                                <label className="block text-gray-600 font-semibold mb-2">Have a Coupon Code?</label>
+                                <label className="block text-gray-500 font-semibold mb-2">Have a Coupon Code?</label>
                                 <div className="flex flex-col sm:flex-row">
                                     <input
                                         type="text"

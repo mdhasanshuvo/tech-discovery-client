@@ -148,7 +148,7 @@ const TrendingProducts = () => {
 
   return (
     <div className="container mx-auto px-4 pb-12 sm:pb-16 lg:pb-24">
-      <h2 className="text-4xl font-extrabold text-center mb-12 text-gray-800 mt-6">
+      <h2 className="text-4xl font-extrabold text-center mb-12 text-primary mt-6">
         Trending Products
       </h2>
 
@@ -168,7 +168,7 @@ const TrendingProducts = () => {
                 🎉 {coupon.discount}% Off
               </p>
               <div className="bg-white py-2 px-4 rounded-full shadow-md">
-                <span className="text-sm font-medium text-gray-600">Expires on: </span>
+                <span className="text-sm font-medium text-gray-500">Expires on: </span>
                 <span className="text-sm font-bold text-red-600">
                   {new Date(coupon.expiryDate).toLocaleDateString()}
                 </span>
@@ -199,7 +199,7 @@ const TrendingProducts = () => {
               >
                 {product.name}
               </h2>
-              <p className="text-gray-600 text-sm line-clamp-2">
+              <p className="text-gray-500 text-sm line-clamp-2">
                 {product.description.length > 50
                   ? product.description.slice(0, 50) + "..."
                   : product.description}
@@ -218,7 +218,7 @@ const TrendingProducts = () => {
                 <button
                   onClick={() => handleVoteToggle(product._id)}
                   className={`flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-medium transition-transform transform hover:scale-105 ${product.owner.email === user?.email
-                    ? "bg-gray-300 text-gray-600 cursor-not-allowed"
+                    ? "bg-gray-300 text-gray-500 cursor-not-allowed"
                     : "bg-blue-600 text-white hover:bg-blue-700"
                     }`}
                 >

@@ -30,7 +30,7 @@ const BlogNewsSection = () => {
 
     return (
         <section className="container mx-auto px-4 py-12 sm:py-16 lg:py-24">
-            <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Latest Tech News & Product Launches</h2>
+            <h2 className="text-3xl font-bold text-center text-primary mb-8">Latest Tech News & Product Launches</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {newsArticles.map((article, index) => (
                     <div key={index} className="bg-white shadow-lg rounded-lg overflow-hidden">
@@ -41,7 +41,7 @@ const BlogNewsSection = () => {
                         />
                         <div className="p-6">
                             <h3 className="text-xl font-semibold text-gray-800 mb-3">{article.title}</h3>
-                            <p className="text-gray-600 mb-4">{article.description}</p>
+                            <p className="text-gray-500 mb-4">{article.description}</p>
                             <a target='_blank' href={article.link} className="text-blue-600 hover:underline">Read More</a>
                             <p className="text-gray-500 text-sm mt-4">{article.date}</p>
                         </div>

@@ -100,7 +100,7 @@ const Products = () => {
   return (
     <div className="container mx-auto px-4 py-12 sm:py-16 lg:py-24">
       <div className="text-center">
-        <h2 className="text-4xl font-extrabold text-gray-800 mb-10">✨ Featured Products ✨</h2>
+        <h2 className="text-4xl font-extrabold text-primary mb-10"> Featured Products </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {products.map((product) => (
             <div
@@ -121,7 +121,7 @@ const Products = () => {
                 >
                   {product.name}
                 </h2>
-                <p className="text-gray-600 text-sm line-clamp-2">
+                <p className="text-gray-500 text-sm line-clamp-2">
                   {product.description.length > 30
                     ? product.description.slice(0, 30) + "..."
                     : product.description}

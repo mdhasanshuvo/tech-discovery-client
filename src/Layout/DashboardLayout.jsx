@@ -132,7 +132,9 @@ const DashboardLayout = () => {
       {/* Sidebar */}
       <aside className="w-64 bg-blue-800 text-white flex flex-col">
         <div className="py-6 px-4">
-          <h1 className="text-center text-2xl font-bold mb-8">Tech Discovery</h1>
+          <Link to="/">
+            <h1 className="text-center text-2xl font-bold mb-8">Tech Discovery</h1>
+          </Link>
           <nav className="space-y-4">{renderLinks()}</nav>
         </div>
         <div className="mt-auto py-4 px-4">
@@ -152,7 +154,7 @@ const DashboardLayout = () => {
         <header className="bg-white shadow-md px-6 py-4 flex justify-between items-center">
           <h2 className="text-lg font-bold text-gray-800">Dashboard</h2>
           <div className="flex items-center gap-4">
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-500">
               Hello, {user?.displayName || "Guest"}!
             </p>
             <div className="relative group">

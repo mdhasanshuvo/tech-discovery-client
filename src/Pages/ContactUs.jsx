@@ -26,17 +26,17 @@ const ContactUs = () => {
                         {/* Phone */}
                         <div className="bg-gray-100 p-8 rounded-lg shadow-lg hover:shadow-2xl transition duration-300">
                             <h3 className="text-2xl font-semibold text-gray-800 mb-4">Phone</h3>
-                            <p className="text-lg text-gray-600">+1 (123) 456-7890</p>
+                            <p className="text-lg text-gray-500">+1 (123) 456-7890</p>
                         </div>
                         {/* Email */}
                         <div className="bg-gray-100 p-8 rounded-lg shadow-lg hover:shadow-2xl transition duration-300">
                             <h3 className="text-2xl font-semibold text-gray-800 mb-4">Email</h3>
-                            <p className="text-lg text-gray-600">support@techdiscovery.com</p>
+                            <p className="text-lg text-gray-500">support@techdiscovery.com</p>
                         </div>
                         {/* Address */}
                         <div className="bg-gray-100 p-8 rounded-lg shadow-lg hover:shadow-2xl transition duration-300">
                             <h3 className="text-2xl font-semibold text-gray-800 mb-4">Location</h3>
-                            <p className="text-lg text-gray-600">123 Innovation Lane, Tech City, World</p>
+                            <p className="text-lg text-gray-500">123 Innovation Lane, Tech City, World</p>
                         </div>
                     </div>
                 </div>

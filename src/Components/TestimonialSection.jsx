@@ -39,13 +39,13 @@ const testimonials = [
 
 const TestimonialSection = () => {
     return (
-        <section className="bg-gray-100">
+        <section className="bg-base-200">
             <div className="container mx-auto px-4 py-12 sm:py-16 lg:py-24">
                 <div className="container mx-auto px-6 text-center">
-                    <h2 className="text-4xl font-bold text-gray-800 mb-6">
+                    <h2 className="text-4xl font-bold text-primary mb-6">
                         What Our Users Say
                     </h2>
-                    <p className="text-lg text-gray-600 mb-12">
+                    <p className="text-lg text-gray-500 mb-12">
                         See how Tech Discovery is helping innovators and enthusiasts
                         worldwide!
                     </p>
@@ -73,7 +73,7 @@ const TestimonialSection = () => {
                                         src={testimonial.image}
                                         alt={testimonial.name}
                                     />
-                                    <p className="text-gray-600 italic mt-4">"{testimonial.feedback}"</p>
+                                    <p className="text-gray-500 italic mt-4">"{testimonial.feedback}"</p>
                                     <h3 className="text-lg font-semibold text-gray-800 mt-4">
                                         {testimonial.name}
                                     </h3>

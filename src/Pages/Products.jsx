@@ -187,12 +187,12 @@ const Products = () => {
               >
                 {product.name}
               </h2>
-              <p className="text-gray-600 text-sm line-clamp-2 py-1">
+              <p className="text-gray-500 text-sm line-clamp-2 py-1">
                 {product.description.length > 50
                   ? product.description.slice(0, 50) + "..."
                   : product.description}
               </p>
-              <p className="text-sm text-gray-600 mt-2">
+              <p className="text-sm text-gray-500 mt-2">
                 Tags:{" "}
                 {product.tags.map((tag, index) => (
                   <span
@@ -206,7 +206,7 @@ const Products = () => {
               <button
                 onClick={() => handleVoteToggle(product._id)}
                 className={`flex items-center justify-center gap-2 mt-4 px-5 py-2 rounded-lg text-sm font-medium transition-transform transform hover:scale-105 ${product.owner.email === user?.email
-                  ? "bg-gray-300 text-gray-600 cursor-not-allowed"
+                  ? "bg-gray-300 text-gray-500 cursor-not-allowed"
                   : "bg-blue-500 text-white hover:bg-blue-600"
                   }`}
               >

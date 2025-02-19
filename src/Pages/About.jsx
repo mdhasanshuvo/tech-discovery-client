@@ -57,7 +57,7 @@ const AboutUs = () => {
                                     <i className={`${value.icon} text-4xl text-primary`}></i>
                                 </div>
                                 <h3 className="text-2xl font-semibold text-gray-800 mb-2">{value.title}</h3>
-                                <p className="text-gray-600">{value.desc}</p>
+                                <p className="text-gray-500">{value.desc}</p>
                             </div>
                         ))}
                     </div>
@@ -77,7 +77,7 @@ const AboutUs = () => {
                         ].map((feature, index) => (
                             <div key={index} className="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl text-center">
                                 <h3 className="text-2xl font-semibold text-gray-800 mb-2">{feature.title}</h3>
-                                <p className="text-gray-600">{feature.desc}</p>
+                                <p className="text-gray-500">{feature.desc}</p>
                             </div>
                         ))}
                     </div>

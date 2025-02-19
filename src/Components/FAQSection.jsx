@@ -39,7 +39,7 @@ const FAQSection = () => {
 
     return (
         <div className="container mx-auto px-4 py-12 sm:py-16 lg:py-24">
-            <h2 className="text-4xl font-bold text-center text-gray-800 mb-8">
+            <h2 className="text-4xl font-bold text-center text-primary mb-8">
                 Frequently Asked Questions
             </h2>
             <div className="flex justify-between flex-col md:flex-row">

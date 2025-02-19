@@ -71,7 +71,7 @@ const Footer = () => {
 
         {/* Footer Bottom */}
         <div className="text-center">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-500">
             © {new Date().getFullYear()} Tech Discovery. All rights reserved.
           </p>
         </div>

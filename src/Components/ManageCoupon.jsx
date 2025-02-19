@@ -141,11 +141,11 @@ const ManageCoupon = () => {
             {coupons.map((coupon) => (
               <div key={coupon._id} className="card bg-white shadow-md rounded-lg p-6">
                 <h3 className="text-lg font-bold text-gray-800">{coupon.code}</h3>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-500">
                   Expiry: {new Date(coupon.expiryDate).toLocaleDateString()}
                 </p>
                 <p className="text-gray-700">{coupon.description}</p>
-                <p className="text-sm text-gray-600 font-bold">
+                <p className="text-sm text-gray-500 font-bold">
                   Discount: {coupon.discount}%
                 </p>
                 <div className="mt-4 flex justify-between">

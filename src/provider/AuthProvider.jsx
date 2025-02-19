@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
-import { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { app } from "../firebase/firebase.config";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 
@@ -78,6 +78,15 @@ const AuthProvider = ({ children }) => {
         setSubscriptionAmount(amount);
     };
 
+    const [theme, setTheme] = React.useState('light');
+    const toggleTheme = () => {
+        setTheme(theme === 'dark' ? 'light' : 'dark');
+    };
+    // initially set the theme and "listen" for changes to apply them to the HTML tag
+    React.useEffect(() => {
+        document.querySelector('html').setAttribute('data-theme', theme);
+    }, [theme]);
+
 
 
     const authValues = {
@@ -92,7 +101,9 @@ const AuthProvider = ({ children }) => {
         email,
         setEmail,
         subscriptionAmount,
-        updateSubscriptionAmount
+        updateSubscriptionAmount,
+        theme,
+        toggleTheme
     }
 
     return (
