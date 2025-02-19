@@ -99,6 +99,17 @@ const MyProfile = () => {
                     <h2 className="text-2xl font-bold mt-4 text-gray-800">{user?.displayName || "Name not available"}</h2>
                     <p className="text-gray-500">{user?.email}</p>
                 </div>
+                <div className="mt-6 text-center">
+                    <p className="text-gray-700">
+                        <strong>Phone:</strong> +1 (123) 456-7890
+                    </p>
+                    <p className="text-gray-700">
+                        <strong>Address:</strong> 1234 Elm Street, New York, USA
+                    </p>
+                    <p className="text-gray-700">
+                        <strong>Joined:</strong> January 2025
+                    </p>
+                </div>
 
                 <div className="mt-8">
                     {subscribed ? (

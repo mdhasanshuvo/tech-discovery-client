@@ -31,6 +31,13 @@ const DashboardLayout = () => {
             <title>Admin-Dashboard | Tech Discovery</title>
           </Helmet>
           <Link
+            to="/dashboard/admin-profile"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-600 active:bg-blue-700 transition"
+          >
+            <FiUser size={20} />
+            <span>My Profile</span>
+          </Link>
+          <Link
             to="/dashboard/statistics"
             className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-600 active:bg-blue-700 transition"
           >
@@ -59,6 +66,13 @@ const DashboardLayout = () => {
           <Helmet>
             <title>Moderator-Dashboard | Tech Discovery</title>
           </Helmet>
+          <Link
+            to="/dashboard/admin-profile"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-600 active:bg-blue-700 transition"
+          >
+            <FiUser size={20} />
+            <span>My Profile</span>
+          </Link>
           <Link
             to="/dashboard/moderator-statistics"
             className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-600 active:bg-blue-700 transition"

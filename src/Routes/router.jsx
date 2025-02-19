@@ -23,6 +23,7 @@ import About from '../Pages/About';
 import ContactUs from '../Pages/ContactUs';
 import ModeratorStatistics from '../Components/ModeratorStatistics';
 import UserStatistics from '../Components/UserStatistics';
+import AdminProfile from '../Components/AdminProfile';
 
 const router = createBrowserRouter([
     {
@@ -78,6 +79,10 @@ const router = createBrowserRouter([
             {
                 path: "my-profile",
                 element: <MyProfile></MyProfile>
+            },
+            {
+                path: "admin-profile",
+                element: <AdminProfile></AdminProfile>
             },
             {
                 path: "payment",
