@@ -122,7 +122,7 @@ const Products = () => {
                   {product.name}
                 </h2>
                 <p className="text-gray-600 text-sm line-clamp-2">
-                  {product.description.length > 50
+                  {product.description.length > 30
                     ? product.description.slice(0, 30) + "..."
                     : product.description}
                 </p>

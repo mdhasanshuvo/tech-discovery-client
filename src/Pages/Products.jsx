@@ -11,24 +11,29 @@ const Products = () => {
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [isTopRated, setIsTopRated] = useState(false); // State to toggle top-rated filter
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('https://product-hunt-server-five.vercel.app/product', {
+        let url = 'https://product-hunt-server-five.vercel.app/product';
+        if (isTopRated) {
+          url = 'http://localhost:5000/alltrending'; // Fetch top-rated products
+        }
+        const response = await axios.get(url, {
           params: { page, search },
         });
-        setProducts(response.data.products);
-        setTotalPages(response.data.totalPages);
+        setProducts(response.data.products || response.data); // Handle different responses
+        setTotalPages(response.data.totalPages || 1); // Handle pagination for all products
       } catch (error) {
         console.error('Error fetching products:', error);
       }
     };
 
     fetchProducts();
-  }, [page, search]);
+  }, [page, search, isTopRated]); // Re-fetch products when the filter changes
 
   const handleVoteToggle = async (id) => {
     if (!user) {
@@ -112,9 +117,22 @@ const Products = () => {
     }
   };
 
+  const handleProductDetails = (id) => {
+    if (!user) {
+      Swal.fire({
+        icon: "warning",
+        title: "Please login first!",
+        text: "You need to be logged in to vote.",
+      });
+      return navigate("/auth/login");
+    }
+    navigate(`/product-details/${id}`);
+  };
 
-
-
+  // Handle toggle for top-rated filter
+  const handleTopRatedToggle = () => {
+    setIsTopRated((prev) => !prev);
+  };
 
   return (
     <div className="container mx-auto px-4 py-12 sm:pb-16 lg:pb-24">
@@ -137,6 +155,16 @@ const Products = () => {
         />
       </div>
 
+      {/* Top Rated Filter Toggle */}
+      <div className="flex justify-center mb-6">
+        <button
+          onClick={handleTopRatedToggle}
+          className="px-5 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+        >
+          {isTopRated ? 'Show All Products' : 'Show Top Rated Products'}
+        </button>
+      </div>
+
       {/* Product Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {products.map((product) => (
@@ -154,11 +182,16 @@ const Products = () => {
             {/* Product Details */}
             <div className="p-4">
               <h2
-                onClick={() => navigate(`/product-details/${product._id}`)}
+                onClick={() => handleProductDetails(product._id)}
                 className="text-lg font-semibold text-gray-800 cursor-pointer hover:text-blue-600 transition-colors"
               >
                 {product.name}
               </h2>
+              <p className="text-gray-600 text-sm line-clamp-2 py-1">
+                {product.description.length > 50
+                  ? product.description.slice(0, 50) + "..."
+                  : product.description}
+              </p>
               <p className="text-sm text-gray-600 mt-2">
                 Tags:{" "}
                 {product.tags.map((tag, index) => (
@@ -206,7 +239,6 @@ const Products = () => {
       </div>
     </div>
   );
-
 };
 
 export default Products;

@@ -23,7 +23,7 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section className=" py-12 sm:py-16 lg:py-24 bg-gray-50">
+    <section className="py-12 sm:py-16 lg:py-20 bg-gray-50">
       <div className="container mx-auto px-6 text-center">
         <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-8">How It Works</h2>
         <p className="text-lg text-gray-600 mb-12">
