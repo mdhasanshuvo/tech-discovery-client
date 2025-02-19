@@ -3,6 +3,7 @@ import BannerSlider from '../Components/Banner';
 import FeaturedProducts from '../Components/FeaturedProducts';
 import TrendingProducts from '../Components/TrendingProducts';
 import FAQSection from '../Components/FAQSection';
+import TestimonialSection from '../Components/TestimonialSection';
 
 const Home = () => {
     return (
@@ -13,6 +14,7 @@ const Home = () => {
             <BannerSlider></BannerSlider>
             <FeaturedProducts></FeaturedProducts>
             <TrendingProducts></TrendingProducts>
+            <TestimonialSection></TestimonialSection>
             <FAQSection></FAQSection>
         </>
     );

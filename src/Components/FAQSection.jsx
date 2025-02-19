@@ -38,15 +38,15 @@ const FAQSection = () => {
     };
 
     return (
-        <div className="container mx-auto px-4 pb-12 sm:pb-16 lg:pb-24">
+        <div className="container mx-auto px-4 py-12 sm:py-16 lg:py-24">
             <h2 className="text-4xl font-bold text-center text-gray-800 mb-8">
                 Frequently Asked Questions
             </h2>
-            <div className="flex justify-between">
-                <div className="w-[40%]" >
+            <div className="flex justify-between flex-col md:flex-row">
+                <div className=" md:w-[40%]" >
                     <img src={faq} alt="" />
                 </div>
-                <div className="w-[55%] my-auto">
+                <div className="md:w-[55%] my-auto">
                     <div className="space-y-4">
                         {faqs.map((faq, index) => (
                             <div
