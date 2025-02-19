@@ -60,6 +60,13 @@ const DashboardLayout = () => {
             <title>Moderator-Dashboard | Tech Discovery</title>
           </Helmet>
           <Link
+            to="/dashboard/moderator-statistics"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-600 active:bg-blue-700 transition"
+          >
+            <MdDashboard size={20} />
+            <span>Statistics</span>
+          </Link>
+          <Link
             to="/dashboard/review-queue"
             className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-600 active:bg-blue-700 transition"
           >

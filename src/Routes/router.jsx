@@ -21,6 +21,7 @@ import AdminStatistics from '../Components/AdminStatistics';
 import ManageCoupon from '../Components/ManageCoupon';
 import About from '../Pages/About';
 import ContactUs from '../Pages/ContactUs';
+import ModeratorStatistics from '../Components/ModeratorStatistics';
 
 const router = createBrowserRouter([
     {
@@ -96,6 +97,10 @@ const router = createBrowserRouter([
             {
                 path: "reported-contents",
                 element: <ModeratorRoute><ReportedContents></ReportedContents></ModeratorRoute>
+            },
+            {
+                path: "moderator-statistics",
+                element: <ModeratorRoute><ModeratorStatistics></ModeratorStatistics>,</ModeratorRoute>
             }
         ]
     },

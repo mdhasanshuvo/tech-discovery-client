@@ -20,7 +20,7 @@ const Products = () => {
       try {
         let url = 'https://product-hunt-server-five.vercel.app/product';
         if (isTopRated) {
-          url = 'http://localhost:5000/alltrending'; // Fetch top-rated products
+          url = 'https://product-hunt-server-five.vercel.app/alltrending'; // Fetch top-rated products
         }
         const response = await axios.get(url, {
           params: { page, search },
