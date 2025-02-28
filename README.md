@@ -1,73 +1,137 @@
+# 🚀 Tech Discovery – Explore & Share the Latest Tech Innovations  
 
-# 🚀 Tech Discovery  
+**Tech Discovery** is a cutting-edge platform inspired by **[Product Hunt](https://producthunt.com)** that allows users to **discover, upvote, and review** the latest **tech products**. Whether it's AI tools, web apps, software, or games, users can engage with trending technologies, submit their own products, and access exclusive features through subscriptions.  
 
-**Tech Discovery** is an innovative platform inspired by **[Product Hunt](https://producthunt.com)**, allowing users to **discover, share, and engage** with the latest **tech products**. From web apps and AI tools to games and mobile applications, users can explore new releases, upvote products, leave reviews, and unlock premium features through subscriptions.  
+> **📌 Built with the MERN Stack** (MongoDB, Express.js, React.js, Node.js) and featuring **role-based access control** for **Users, Moderators, and Admins**.  
 
-The platform includes **role-based access control** for **Normal Users, Moderators, and Admins**, ensuring a well-structured and seamless experience.  
+![Project Screenshot](https://i.ibb.co.com/238znTb9/Banner.png)  
 
 ---
 
 ## 🌍 Live Demo  
 
-🔗 **[Visit Tech Discovery](https://tech-discovery-auth.web.app) 🚀**  
+🔗 **[Visit Tech Discovery](https://tech-discovery-auth.web.app) 🚀** 
 
 ---
 
 ## 📖 Project Overview  
 
-Tech Discovery is designed to provide a **feature-rich** and **user-friendly** experience:  
+🔹 **Explore & Discover** new tech products in multiple categories.  
+🔹 **Upvote & Review** products, helping users identify top-rated tools.  
+🔹 **Submit & Manage** products via an intuitive dashboard.  
+🔹 **Role-Based Access Control** ensuring moderation and user management.  
+🔹 **Subscription-Based Premium Features** for exclusive content.  
+🔹 **Secure Authentication & Payment System** integrated for a seamless experience.  
 
-✅ **Browse & Discover** new tech products across various categories.  
-✅ **Upvote & Review** products, helping users identify trending innovations.  
-✅ **Submit & Manage** products via an intuitive dashboard.  
-✅ **Subscription-Based Features** for exclusive content and premium access.  
-✅ **Secure Role-Based Access** ensuring proper moderation and user management.  
 
 ---
 
 ## ✨ Features  
 
 ### 👥 **User Roles & Permissions**  
-- 🏷 **Normal Users:**  
-  - Browse and upvote products.  
-  - Submit new products for review.  
-  - Post reviews and report inappropriate content.  
-- 🛠 **Moderators:**  
-  - Approve or reject product submissions.  
-  - Manage reported products.  
-  - Mark products as **"Featured"**.  
-- 🔑 **Admins:**  
-  - Manage user roles and permissions.  
-  - Monitor platform activity through an analytics dashboard.  
+
+#### 🏷 **Normal Users**  
+✔ Browse & upvote products.  
+✔ Submit new products for review.  
+✔ Post reviews and report inappropriate content.  
+
+#### 🛠 **Moderators**  
+✔ Approve or reject submitted products.  
+✔ Handle reported products.  
+✔ Mark products as **"Featured"**.  
+
+#### 🔑 **Admins**  
+✔ Manage user roles & permissions.  
+✔ Monitor platform activity via an **Admin Dashboard**.  
+✔ Handle coupon management and site analytics.  
+
+---
 
 ### 🔥 **Core Functionalities**  
-- 🔼 **Upvote System** – Users can upvote products (with restrictions based on role).  
-- 📝 **Product Submission & Moderation** – A well-structured approval process.  
-- ⚠️ **Report System** – Ensure product quality with a reporting feature.  
-- 💳 **Membership Subscription** – Unlock premium features via a **payment gateway** integration.  
+✔ **🔼 Upvote System** – Users can upvote products once.  
+✔ **📝 Product Submission & Review Process** – Moderators approve or reject.  
+✔ **⚠️ Reporting System** – Users can flag inappropriate content.  
+✔ **💳 Membership Subscription** – Premium features via **Stripe** integration.  
+✔ **📊 Admin Analytics Dashboard** – Pie charts for product stats & user engagement.  
 
-### 📌 **Interactive Pages**  
-- 🏠 **Homepage:**  
-  - 🎡 Featured Banner / Carousel  
-  - 🌟 Trending Products Section  
-  - 📜 Category-Based Product Browsing  
-- 🏷 **Product Details Page:**  
-  - 🛠️ Full Product Descriptions  
-  - 🔼 Upvote & ⚠️ Report Functionality  
-  - 💬 Review and Rating System  
-- 🛠 **User Dashboard:**  
-  - 👤 View & Edit Profile  
-  - ➕ Add & Manage Products  
-  - 📊 Admin Analytics & Moderation Panel  
+---
 
-### 🔑 **Authentication & Security**  
-- 🔐 **JWT-Based Authentication** – Secure login and access control.  
-- 🔑 **Firebase Authentication** – Social & email/password login.  
-- 🏗 **Private Routes** – Secure access to protected pages and dashboards.  
+## 📌 Interactive Pages  
 
-### 📱 **Responsive Design**  
-- **Optimized for Mobile, Tablet, and Desktop**  
-- Smooth & modern **UI/UX** powered by **Tailwind CSS + DaisyUI**  
+### 🏠 **Homepage**  
+✔ 🎡 **Featured Products Section**  
+✔ 🌟 **Trending Products Section** (sorted by vote count)  
+✔ 📜 **Category-Based Product Browsing**  
+✔ 📰 **Latest Tech News & Product Launches**  
+✔ 🛠 **How It Works Section** (Guide for Users)  
+✔ ⭐ **User Testimonials & Reviews**  
+✔ ❓ **FAQ Section** (Commonly Asked Questions)  
+✔ 📢 **Promotional Offers & Discounts**  
+
+![Homepage Screenshot](https://i.ibb.co.com/DPZKf9RH/Home.png)  
+
+---
+
+### 📦 **Explore All Products Page**  
+✔ 🔍 **Search & Filter Products by Tags**  
+✔ 🏆 **Show Top Rated Products Option**  
+✔ 📸 **High-Quality Product Thumbnails & Descriptions**  
+✔ 📂 **Pagination for Better Navigation**  
+✔ 💡 **Category & Tag Based Sorting**  
+✔ 🔗 **Easy Access to Individual Product Pages**  
+
+![All Products Screenshot](https://i.ibb.co.com/fYLK89Lh/All-products.png)  
+
+
+### 🏷 **Product Details Page**  
+✔ 🛠️ **Detailed Product Information**  
+✔ 🔼 **Upvote & ⚠️ Report Functionality**  
+✔ 💬 **Review & Rating System**  
+
+![Product Details Screenshot](https://i.ibb.co.com/Fqb490pj/Details.png)  
+
+### 🛠 **User Dashboard**  
+✔ 👤 **View & Edit Profile**  
+✔ ➕ **Add & Manage Products**  
+✔ 📊 **Admin Analytics & Moderation Panel**  
+
+![User Dashboard](https://i.ibb.co.com/r21m8jrQ/User-Dashboard.png)  
+
+---
+
+### 🛠 **Admin Dashboard**  
+✔ 📊 **View Site Statistics**  
+✔ 👥 **Manage Users**  
+✔ 🎟 **Manage Coupons**  
+
+![Admin Dashboard](https://i.ibb.co.com/TDsyNGLW/Admin.png)  
+
+---
+
+### 🛠 **Moderator Dashboard**  
+✔ 🏷 **Review & Approve Products**  
+✔ 🚀 **Feature Top Products**  
+✔ ❌ **Reject Inappropriate Submissions**  
+✔ 📊 **View Site Statistics**
+
+![Moderator Dashboard](https://i.ibb.co.com/234qY1fZ/Moderator.png)  
+
+
+---
+
+## 🔑 **Authentication & Security**  
+
+✔ **JWT-Based Authentication** – Secure login & protected routes.  
+✔ **Firebase Authentication** – Social & email/password login.  
+✔ **Environment Variables** – Hiding Firebase & MongoDB credentials.  
+
+---
+
+## 📱 **Responsive Design**  
+
+✅ Fully optimized for **Mobile, Tablet, and Desktop**  
+✅ Built with **Tailwind CSS + DaisyUI** for a modern, clean UI  
+
 
 ---
 
@@ -77,8 +141,8 @@ Tech Discovery is designed to provide a **feature-rich** and **user-friendly** e
 |--------------|-----------|
 | **Frontend** | React.js, Tailwind CSS, DaisyUI |
 | **Backend** | Node.js, Express.js |
-| **Database** | MongoDB (with Mongoose ORM) |
-| **Authentication** | Firebase Authentication, JSON Web Tokens (JWT) |
+| **Database** | MongoDB (Mongoose ORM) |
+| **Authentication** | Firebase, JSON Web Tokens (JWT) |
 | **Payment Integration** | Stripe |
 
 ---
@@ -87,24 +151,22 @@ Tech Discovery is designed to provide a **feature-rich** and **user-friendly** e
 
 | Package | Purpose |
 |---------|---------|
-| `axios` | Handle API requests seamlessly |
-| `chart.js` & `react-chartjs-2` | Interactive analytics & data visualization |
-| `firebase` | Authentication and backend services |
-| `react-icons` | Beautiful, customizable icons |
-| `react-router-dom` | Smooth page navigation |
-| `react-rating` | Implement star-based rating system |
-| `react-modal` | Accessible modal components |
-| `react-slick` & `slick-carousel` | Advanced sliders and carousels |
-| `sweetalert2` | Elegant alert pop-ups and notifications |
-| `stripe` | Secure and fast payment processing |
-| `jsonwebtoken (JWT)` | User authentication & security |
+| `axios` | Handle API requests |
+| `firebase` | Authentication & backend services |
+| `react-router-dom` | Client-side routing |
+| `jsonwebtoken (JWT)` | Secure user authentication |
+| `react-icons` | UI enhancements |
+| `sweetalert2` | Elegant alert pop-ups |
+| `framer-motion` | Smooth animations |
+| `chart.js` & `react-chartjs-2` | Admin dashboard analytics |
+| `stripe` | Payment gateway integration |
 
 ---
 
 ## 🚀 Getting Started  
 
 ### 📌 Prerequisites  
-Before running the project, make sure you have:  
+Before running the project, ensure you have:  
 - 🟢 **Node.js** (v14+ recommended)  
 - 📦 **npm** or **yarn** (latest version)  
 - 🛢 **MongoDB** (Local setup or MongoDB Atlas)  
@@ -125,14 +187,13 @@ yarn install
 ```  
 
 #### 3️⃣ Set Up Environment Variables  
-Create a `.env` file in the root directory and add:  
+Create a `.env` file and add:  
 
 ```ini
 PORT=5000
 MONGO_URI=your-mongodb-uri
 JWT_SECRET=your-jwt-secret
 STRIPE_SECRET_KEY=your-stripe-secret-key
-STRIPE_PUBLIC_KEY=your-stripe-public-key
 VITE_API_KEY=your-firebase-api-key
 VITE_AUTH_DOMAIN=your-firebase-auth-domain
 VITE_PROJECT_ID=your-firebase-project-id
@@ -140,7 +201,8 @@ VITE_STORAGE_BUCKET=your-firebase-storage-bucket
 VITE_MESSAGING_SENDER_ID=your-firebase-messaging-sender-id
 VITE_APP_ID=your-firebase-app-id
 ```
-🔐 **Ensure you add `.env` to `.gitignore` to keep credentials secure.**  
+
+🔐 **Ensure `.env` is added to `.gitignore` to protect credentials.**  
 
 #### 4️⃣ Start Backend Server  
 ```bash
@@ -154,20 +216,13 @@ npm run dev
 
 ---
 
-## 📖 API Documentation  
-
-For a detailed guide on API endpoints, authentication flow, and data management, refer to the **[API Docs](#)** (update with actual link).  
-
----
-
 ## ❓ Troubleshooting  
 
-If you encounter any issues:  
-- 🔍 Check the **console/logs** for errors.  
+- 🔍 Check **console/logs** for errors.  
 - 📄 Ensure **environment variables** are correctly configured.  
 - 🔄 Run `npm audit fix` to resolve package dependency issues.  
 - 🔌 Ensure MongoDB is running and properly connected.  
-- 📩 Reach out for support via **[GitHub Issues](#)**.  
+- 📩 Reach out via **[GitHub Issues](#)** for support.  
 
 ---
 
@@ -175,11 +230,10 @@ If you encounter any issues:
 
 - **Security Best Practices:**  
   - **Never expose API keys** in the frontend.  
-  - Use **environment variables** for sensitive information.  
-  - Secure authentication with **JWT** and **bcrypt** for password hashing.  
+  - Use **JWT & Firebase Authentication** for security.  
+  - Implement **role-based access control** for admins & moderators.  
 - **Performance Optimization:**  
-  - Implement **lazy loading** for images.  
-  - Use **React Query** for efficient data fetching.  
-  - Minify and compress assets for faster load times.  
+  - Use **lazy loading** for images.  
+  - Implement **pagination** for product listings.  
 
 ---
